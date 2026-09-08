@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Alpha | Academia</title>
+
+    <meta name="description" content="Transforme sua performance com a Project Alpha. Academia moderna focada em saúde, bem-estar, suplementação e resultados reais.">
+    <meta property="og:title" content="Project Alpha - Academia">
+    <meta property="og:description" content="Academia moderna focada em performance, bem-estar, suplementação e resultados reais.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.projectalpha.com.br/">
+
+    <link rel="icon" type="image/png" href="assets/images/Faviicon-alpha.png">
+
+    <!-- Google Fonts — tipografia da marca Project Alpha -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Carousel -->
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.min.css">
+
+    <!-- Venobox -->
+    <link rel="stylesheet" type="text/css" href="assets/css/venobox.min.css">
+
+    <!-- Template base (NÃO EDITAR) -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- AdminLTE Framework de CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.9.1/dist/css/adminlte.min.css" />
+
+    <!-- Customização da marca — deve ser sempre o último -->
+    <link rel="stylesheet" type="text/css" href="assets/css/custom-home.css">
+
+    <style>
+        /* Correção Menu Mobile */
+        .mobile-menu {
+            position: sticky !important;
+            top: 0;
+            z-index: 9999 !important;
+            background-color: #000000;
+        }
+
+        .mobile-menu .menu-content {
+            max-height: calc(100vh - 70px) !important; 
+            overflow-y: auto !important;               
+            -webkit-overflow-scrolling: touch;        
+            background-color: #111111 !important;    
+            padding: 20px !important;
+        }
+
+        .mobile-menu .menu-content ul {
+            list-style: none !important;
+            padding-left: 0 !important;
+            margin: 0 !important;
+        }
+
+        .mobile-menu .menu-content ul li {
+            margin-bottom: 10px;
+        }
+
+        .mobile-menu .menu-content a {
+            color: #ffffff !important;
+            text-decoration: none !important;
+        }
+
+        .mobile-menu .mobail-submenu {
+            padding-left: 15px !important;
+            margin-top: 5px !important;
+        }
+
+        .mobile-menu .info,
+        .mobile-menu .component {
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+        }
+
+        .mobile-menu .info .info-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cccccc;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu Computador -->
+    <header class="site-header sticky-top">
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-left">
+                    <div class="mail">
+                        <a href="mailto:contato@projectalpha.com.br"><i class="fa-solid fa-envelope"></i>contato@projectalpha.com.br</a>
+                    </div>
+                    <div class="location">
+                        <i class="fa-solid fa-location-dot"></i>Av. Alpha Performance, 1200 - Presidente Prudente, SP
+                    </div>
+                </div>
+                <div class="top-right">
+                    <div class="phone">
+                        <a href="tel:+551888887777"><i class="fa-solid fa-phone"></i>(18) 88888-7777</a>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="social">
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="menu-bar">
+                <div class="site-logo">
+                    <a href="index.html"><img src="./assets/images/Logo-nav.png" alt="Project Alpha Academia"></a>
+                </div>
+                <div class="main-menu">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li class="dropdown">
+                            <a href="#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
+                            <ul class="sub-menu">
+                                <li><a href="#sobre-nos">Nossa história</a></li>
+                                <li><a href="#ergonomia">Ergonomia e acessibilidade</a></li>
+                                <li><a href="sobre.html">Página completa</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#modalidades">Modalidades</a></li>
+                        <li><a href="#planos">Planos</a></li>
+                        <li><a href="loja.html">Loja</a></li>
+                        <li><a href="login.html">Entrar</a></li>
+                    </ul>
+                </div>
+                <div class="button">
+                    <a href="cadastro.html" rel="noopener" class="btn">Matricule-se<i class="fa-solid fa-angles-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Menu Mobile -->
+    <div class="mobile-menu sticky-top">
+        <div class="menu-bar">
+            <div class="site-logo">
+                <a href="index.html">
+                    <img src="./assets/images/Logo-nav.png" alt="Project Alpha Academia">
+                </a>
+            </div>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <div class="menu-content">
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li class="mobail-dropdown">
+                        <a href="#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
+                        <ul class="mobail-submenu">
+                            <li><a href="#sobre-nos">Nossa história</a></li>
+                            <li><a href="#ergonomia">Ergonomia e acessibilidade</a></li>
+                            <li><a href="sobre.html">Página completa</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#modalidades">Modalidades</a></li>
+                    <li><a href="#planos">Planos</a></li>
+                    <li><a href="loja.html">Loja</a></li>
+                    <li><a href="login.html">Entrar</a></li>
+                </ul>
+            </div>
+            <div class="info">
+                <h3 class="title">Contato</h3>
+                <div class="info-box">
+                    <i class="fa-solid fa-location-dot"></i>
+                    Av. Alpha Performance, 1200 - Presidente Prudente, SP
+                </div>
+                <div class="info-box">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <a href="tel:+5518988885555">(18) 98888-5555</a>
+                </div>
+                <div class="info-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <a href="mailto:contato@projectalpha.com.br">contato@projectalpha.com.br</a>
+                </div>
+            </div>
+            <div class="component">
+                <div class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="button">
+                    <a href="cadastro.html" target="_blank" rel="noopener" class="btn">Matricule-se<i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container d-flex flex-column align-items-center mt-4">
+        <div class="col-lg-6 mt-5">
+            <div class="card mb-4 bg-light text-dark border-top border-danger border-3">
+                <div class="card-header">
+                    <div class="h1 text-dark mb-2">FAZER LOGIN</div>
+                    <p class="h5 text-muted">Entre com seus dados para acessar a plataforma da academia e navegar pelos serviços disponíveis.</p>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="mb-3 col-md-12">
+                            <label class="form-label" for="genero">Entrar como<span class="required-indicator sr-only"> (required)</span></label>
+                            <select class="form-select bg-white text-dark border border-dark" id="genero" required="">
+                                <option value="masculino" selected>Aluno</option>
+                                <option value="feminino">Personal Trainer</option>
+                                <option value="outro">Administrador</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col-md-12">
+                            <label class="form-label" for="email">E-mail<span class="required-indicator sr-only"> (required)</span></label>
+                            <input type="email" class="form-control bg-white text-dark border border-dark" id="email" required="">
+                        </div>
+
+                        <div class="mb-3 col-md-12">
+                            <label class="form-label" for="senha">Senha<span class="required-indicator sr-only"> (required)</span></label>
+                            <input type="password" class="form-control bg-white text-dark border border-dark" id="senha" required="">
+                        </div>
+
+                        <hr>
+
+                        <button class="btn btn-success" type="submit">Entrar</button>
+                        <button class="btn btn-danger" type="reset">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script necessário para o menu mobile -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.querySelectorAll('.mobile-menu a[href^="#"]').forEach(function (link) {
+            link.addEventListener('click', function () {
+                var content = document.querySelector('.mobile-menu .menu-content');
+                if (content) { content.style.display = 'none'; }
+            });
+        });
+    </script>
+    
+    <!-- AdminLTE Framework JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.9.1/dist/js/adminlte.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,1250 @@
+/* ==========================================================================
+   PROJECT ALPHA — custom-home.css
+   Camada de marca sobre o Bootstrap 5.3.
+   NÃO editar bootstrap.min.css. Este arquivo deve ser carregado DEPOIS dele.
+
+   Estrutura:
+   1. Fontes
+   2. Tokens da marca (:root)
+   3. Ponte Bootstrap (sobrescrita via variáveis nativas --bs-*)
+   4. Tipografia base
+   5. Componentes globais (botões, navbar, foco)
+   6. Acessibilidade
+   ========================================================================== */
+
+/* 1. FONTES ---------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap');
+
+
+/* 2. TOKENS DA MARCA ------------------------------------------------------- */
+:root {
+  /* Cores institucionais */
+  --alpha-red: #C1121F;
+  --alpha-red-hover: #A50F1A;
+  --alpha-red-glow: #FD0013;      /* destaque do H2 do hero */
+  --alpha-red-soft: #B61E1E;      /* fundo dos cards de estatística */
+  --alpha-white: #FFFFFF;
+  --alpha-black: #000000;
+
+  /* Superfícies */
+  --alpha-bg: #050505;
+  --alpha-panel: #0B0B0B;
+  --alpha-panel-2: #111111;
+  --alpha-line: rgba(255, 255, 255, 0.10);
+  --alpha-line-strong: rgba(255, 255, 255, 0.18);
+
+  /* Texto */
+  --alpha-text-soft: #CFCFCF;
+  --alpha-text-muted: #9F9F9F;
+  --alpha-required: #FF5E5E;
+
+  /* Tipografia */
+  --alpha-font-display: 'Bebas Neue', Impact, sans-serif;
+  --alpha-font-body: 'Montserrat', Arial, sans-serif;
+  --alpha-tracking-display: 0.04em;
+  --alpha-tracking-eyebrow: 0.16em;
+
+  /* Forma */
+  --alpha-radius-xl: 28px;
+  --alpha-radius-lg: 20px;
+  --alpha-radius-md: 14px;
+  --alpha-radius-pill: 999px;
+  --alpha-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --alpha-max: 1360px;
+}
+
+
+/* 3. PONTE BOOTSTRAP ------------------------------------------------------- */
+/* O Fitcore expõe a própria paleta em três variáveis no :root do style.css.
+   Redefini-las aqui reconstrói a marca em toda a página de uma vez — inclui
+   componentes que eu nem toquei. Isso vale mais que qualquer !important:
+   --paragraph-color era #707070, cinza que sobre preto fica ilegível
+   (contraste 2.6:1, abaixo do mínimo 4.5:1 da WCAG AA).                      */
+:root {
+  --main-color: #C1121F;
+  --title-color: #FFFFFF;
+  --paragraph-color: #CFCFCF;
+}
+
+:root {
+  --bs-primary: var(--alpha-red);
+  --bs-primary-rgb: 193, 18, 31;
+  --bs-link-color: var(--alpha-white);
+  --bs-link-color-rgb: 255, 255, 255;
+  --bs-link-hover-color: var(--alpha-red);
+
+  --bs-body-bg: var(--alpha-bg);
+  --bs-body-bg-rgb: 5, 5, 5;
+  --bs-body-color: var(--alpha-white);
+  --bs-body-color-rgb: 255, 255, 255;
+  --bs-secondary-color: var(--alpha-text-soft);
+  --bs-tertiary-color: var(--alpha-text-muted);
+
+  --bs-border-color: var(--alpha-line);
+  --bs-border-radius: var(--alpha-radius-md);
+  --bs-border-radius-lg: var(--alpha-radius-lg);
+  --bs-border-radius-xl: var(--alpha-radius-xl);
+  --bs-border-radius-pill: var(--alpha-radius-pill);
+
+  --bs-body-font-family: var(--alpha-font-body);
+  --bs-body-font-size: 1rem;
+  --bs-body-line-height: 1.75;
+  --bs-heading-color: var(--alpha-white);
+
+  --bs-emphasis-color: var(--alpha-white);
+  --bs-emphasis-color-rgb: 255, 255, 255;
+}
+
+/* Container alinhado ao grid original (1360px em vez dos 1320px do Bootstrap) */
+@media (min-width: 1400px) {
+  .container,
+  .container-xxl,
+  .container-xl,
+  .container-lg,
+  .container-md,
+  .container-sm {
+    max-width: var(--alpha-max);
+  }
+}
+
+
+/* 4. TIPOGRAFIA BASE ------------------------------------------------------- */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--alpha-font-body);
+  background-color: var(--alpha-bg);
+  color: var(--alpha-white);
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-family: var(--alpha-font-display);
+  font-weight: 400;
+  letter-spacing: var(--alpha-tracking-display);
+  line-height: 0.95;
+}
+
+p { line-height: 1.75; }
+
+.text-soft  { color: var(--alpha-text-soft) !important; }
+.text-muted { color: var(--alpha-text-muted) !important; }
+.text-brand { color: var(--alpha-red) !important; }
+
+/* Sobrescreve o "sublinhado vermelho" do H2 do hero original */
+.text-glow { color: var(--alpha-red-glow) !important; }
+
+/* Eyebrow: rótulo em caixa alta acima dos títulos de seção */
+.alpha-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--alpha-font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--alpha-tracking-eyebrow);
+  color: var(--alpha-red);
+}
+
+.alpha-eyebrow::before {
+  content: "";
+  width: 38px;
+  height: 3px;
+  border-radius: var(--alpha-radius-pill);
+  background: var(--alpha-red);
+  box-shadow: 0 0 6px rgba(193, 18, 31, 0.7);
+}
+
+
+/* 5. COMPONENTES GLOBAIS --------------------------------------------------- */
+/* Botão primário — via variáveis do componente, sem !important */
+.btn-primary {
+  --bs-btn-bg: var(--alpha-red);
+  --bs-btn-border-color: var(--alpha-red);
+  --bs-btn-color: var(--alpha-white);
+  --bs-btn-hover-bg: var(--alpha-red-hover);
+  --bs-btn-hover-border-color: var(--alpha-red-hover);
+  --bs-btn-hover-color: var(--alpha-white);
+  --bs-btn-active-bg: var(--alpha-red-hover);
+  --bs-btn-active-border-color: var(--alpha-red-hover);
+  --bs-btn-focus-shadow-rgb: 193, 18, 31;
+  font-weight: 700;
+  border-radius: var(--alpha-radius-md);
+}
+
+.btn-outline-light {
+  --bs-btn-border-color: var(--alpha-line-strong);
+  --bs-btn-hover-bg: rgba(255, 255, 255, 0.05);
+  --bs-btn-hover-border-color: var(--alpha-line-strong);
+  --bs-btn-hover-color: var(--alpha-white);
+  font-weight: 700;
+  border-radius: var(--alpha-radius-md);
+}
+
+/* CTA "Matricule-se" da navbar — pílula sólida da marca */
+.btn-matricula {
+  --bs-btn-bg: var(--alpha-red);
+  --bs-btn-border-color: var(--alpha-red);
+  --bs-btn-color: var(--alpha-white);
+  --bs-btn-hover-bg: var(--alpha-red-hover);
+  --bs-btn-hover-border-color: var(--alpha-red-hover);
+  --bs-btn-hover-color: var(--alpha-white);
+  border-radius: var(--alpha-radius-pill);
+  padding: 0.65rem 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Marca na navbar */
+.navbar-brand img {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Cartões escuros no padrão do projeto original */
+.alpha-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--alpha-line);
+  border-radius: 24px;
+  padding: 30px;
+}
+
+/* Barra vermelha decorativa (topo/rodapé da página original) */
+.alpha-rule {
+  height: 10px;
+  background: var(--alpha-red);
+  border-radius: var(--alpha-radius-pill);
+}
+
+
+/* 6. OVERRIDES DO TEMPLATE FITCORE ----------------------------------------- */
+/* O template traz a própria paleta em assets/css/style.css. Como aquele
+   arquivo não pode ser editado, as regras abaixo o sobrescrevem por cascata
+   (este CSS é carregado por último). O !important aparece só onde o template
+   usa seletores mais específicos para cor.                                   */
+
+/* --- TIPOGRAFIA PADRONIZADA -----------------------------------------------
+   O style.css do Fitcore declara font-family UMA única vez, em `body`
+   ("Inter", serif). Todo o resto herda. Por isso basta trocar a fonte no
+   body: a regra ampla `body :not(i)` que existia aqui era desnecessária e
+   era ela que, com especificidade maior, derrubava .alpha-title para
+   Montserrat. Removida.
+
+   Regra da casa: Bebas Neue APENAS em títulos, sempre com font-weight 400.
+   A Bebas tem um único peso — pedir `bold` (como o template faz em
+   .heading) faz o navegador aplicar negrito sintético, que borra o traço.  */
+
+body {
+  font-family: var(--alpha-font-body);
+}
+
+/* Elementos de formulário não herdam fonte por padrão */
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+/* Títulos — família única, peso único, em toda a página */
+h1, h2, h3, h4, h5, h6,
+.hero-content .heading,
+.section-title .title,
+.class-title h3,
+.package-box .price-title,
+.package-box .price,
+.count-box .number,
+.about-left .count h3,
+.marquee-item .text,
+.footer-section h3,
+.alpha-title,
+.alpha-pillar-text,
+.alpha-feature h3 {
+  font-family: var(--alpha-font-display) !important;
+  font-weight: 400 !important;
+  letter-spacing: var(--alpha-tracking-display);
+  text-transform: uppercase;
+}
+
+.alpha-feature-icon {
+  display: block;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--alpha-red);
+  margin-bottom: 18px;
+  transition: transform 0.25s ease;
+}
+.alpha-feature:hover .alpha-feature-icon { transform: translateY(-2px); }
+
+/* Destaques dentro de títulos: mesma fonte, mesmo peso, só a cor muda */
+h1 span, h2 span, h3 span, h4 span, h5 span, h6 span,
+.heading span, .title span, .alpha-title span {
+  font-family: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
+}
+
+/* CORREÇÃO: contraste dos títulos. O template pinta os headings num cinza
+   escuro que fica ilegível sobre o fundo preto da marca. Base branca aqui;
+   os destaques continuam vermelhos porque .text-brand/.text-glow são
+   aplicados no próprio <span> e ganham da regra do elemento pai.             */
+.section-title .title,
+.section-title h1,
+.hero-content .heading,
+.class-title h3,
+.package-box .price-title,
+.footer-section h3,
+.mobile-menu .info .title,
+h1, h2, h3, h4, h5, h6 {
+  color: var(--alpha-white) !important;
+}
+
+/* CORREÇÃO: o subtítulo das seções vinha com fundo branco sólido (mais uma
+   pseudo-borda em degradê), o que cria um bloco leitoso sobre o preto.
+   Aqui vira contorno vazado: fundo transparente, borda e texto vermelhos.    */
+.section-title .subtitle {
+  background: transparent !important;
+  border: 1px solid rgba(193, 18, 31, 0.75);
+  border-radius: var(--alpha-radius-pill);
+  padding: 9px 22px !important;
+  font-size: 0.95rem !important;
+  font-weight: 600;
+  letter-spacing: var(--alpha-tracking-eyebrow);
+}
+
+.section-title .subtitle::before,
+.section-title .subtitle::after {
+  display: none !important;
+}
+
+.text-brand,
+.text-glow,
+.section-title .subtitle span {
+  color: var(--alpha-red) !important;
+}
+
+.hero-content .heading .text-glow {
+  color: var(--alpha-red-glow) !important;
+}
+
+/* Superfícies escuras da marca */
+body,
+.classes-section,
+.alpha-story,
+.alpha-access,
+.package-section,
+.footer-section,
+.site-header {
+  background-color: var(--alpha-bg) !important;
+  color: var(--alpha-white);
+}
+
+.top-bar {
+  background-color: var(--alpha-panel) !important;
+  border-bottom: 1px solid var(--alpha-line);
+}
+
+.top-bar a,
+.top-bar .location {
+  color: var(--alpha-text-soft) !important;
+}
+
+.top-bar i,
+.section-title .subtitle span,
+.package-box .price,
+.footer-section .contact i,
+.about-right .list li i,
+.class-title h3 i {
+  color: var(--alpha-red) !important;
+}
+
+.class-title h3 i {
+  margin-right: 12px;
+  font-size: 0.8em;
+}
+
+/* Menu principal */
+.main-menu ul li a,
+.mobile-menu .menu ul li a {
+  color: var(--alpha-white) !important;
+  transition: color 0.2s ease;
+}
+
+.main-menu ul li a:hover,
+.main-menu ul li a:focus-visible,
+.mobile-menu .menu ul li a:hover {
+  color: var(--alpha-red) !important;
+}
+
+.main-menu .sub-menu {
+  background-color: var(--alpha-panel-2) !important;
+  border: 1px solid var(--alpha-line);
+  border-radius: var(--alpha-radius-md);
+  overflow: hidden;
+}
+
+.site-logo img,
+.mobile-menu .site-logo img,
+.footer-section .discription > img {
+  height: 66px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-section .discription > img {
+  height: 64px;
+}
+
+/* Botões do template (.btn é a classe usada em todos os CTAs) */
+.btn,
+.button .btn {
+  background-color: var(--alpha-red) !important;
+  border-color: var(--alpha-red) !important;
+  color: var(--alpha-white) !important;
+  font-weight: 700;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover,
+.button .btn:hover,
+.btn.active {
+  background-color: var(--alpha-red-hover) !important;
+  border-color: var(--alpha-red-hover) !important;
+  color: var(--alpha-white) !important;
+}
+
+.btn i {
+  color: inherit !important;
+}
+
+/* Hero */
+.hero-content h5 {
+  color: var(--alpha-white) !important;
+  text-transform: uppercase;
+  letter-spacing: var(--alpha-tracking-eyebrow);
+}
+
+/* CORREÇÃO: o template fixa .heading em width:633px e font-size:85px, o que
+   estoura em telas intermediárias. Trocado por largura fluida + clamp.       */
+.hero-section .hero-content .heading {
+  width: auto !important;
+  max-width: 15ch;
+  font-size: clamp(2.6rem, 7.5vw, 5.6rem) !important;
+  line-height: 0.95;
+}
+
+@media (max-width: 767.98px) {
+  .hero-section .hero-content .heading {
+    max-width: 100%;
+    font-size: clamp(2.4rem, 11vw, 3.4rem) !important;
+  }
+
+  .hero-section .hero-content .discription {
+    max-width: 100%;
+  }
+}
+
+/* --- Faixa de parceiros (substitui o marquee de texto) --------------------
+   Carrossel em CSS puro: a esteira contém DUAS cópias idênticas do conjunto
+   e desliza até -50%, ou seja, exatamente uma cópia — o ponto de retorno cai
+   em cima do início e o loop fica invisível. É o mesmo problema que quebrava
+   o marquee do template, resolvido pela geometria em vez do JS.
+   As três logos têm luminosidades incompatíveis entre si (a da FIPP é escura,
+   a da Life Fit é clara), então todas são normalizadas em silhueta branca.   */
+.alpha-partners {
+  padding: 60px 0;
+  border-top: 1px solid var(--alpha-line);
+  border-bottom: 1px solid var(--alpha-line);
+  background-color: var(--alpha-panel);
+  overflow: hidden;
+}
+
+.alpha-partners-label {
+  display: block;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: var(--alpha-tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--alpha-text-muted);
+  margin-bottom: 34px;
+}
+
+.alpha-partners-viewport {
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+.alpha-partners-track {
+  display: flex;
+  align-items: center;
+  gap: 90px;
+  width: max-content;
+  animation: alpha-partners-scroll 26s linear infinite;
+}
+
+.alpha-partners:hover .alpha-partners-track,
+.alpha-partners:focus-within .alpha-partners-track {
+  animation-play-state: paused;
+}
+
+@keyframes alpha-partners-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.alpha-partners-track img {
+  height: 52px;
+  width: auto;
+  flex-shrink: 0;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.alpha-partners-track img:hover {
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+@media (max-width: 767.98px) {
+  .alpha-partners { padding: 44px 0; }
+  .alpha-partners-track { gap: 56px; }
+  .alpha-partners-track img { height: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alpha-partners-track { animation: none; }
+  .alpha-partners-viewport { overflow-x: auto; }
+}
+
+
+.hero-content h5 span {
+  background-color: var(--alpha-red) !important;
+}
+
+.hero-content .heading {
+  color: var(--alpha-white) !important;
+}
+
+.hero-content .discription,
+.about-right .discription,
+.accordion-content p,
+.footer-section p {
+  color: var(--alpha-text-soft) !important;
+}
+
+/* CORREÇÃO: os badges "120+ Alunos" e "24H Acesso" ficavam espremidos contra
+   o fundo vermelho. Espaçamento interno generoso e respiro entre os itens.   */
+.count-box,
+.about-left .text-box {
+  background-color: var(--alpha-red-soft) !important;
+  border-radius: var(--alpha-radius-lg);
+  padding: 20px 28px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.about-left .text-box {
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 30px !important;
+}
+
+.count-box .number,
+.about-left .count h3 {
+  margin: 0 0 4px;
+  line-height: 1;
+}
+
+.count-box p,
+.about-left .text-box p {
+  margin: 0;
+  color: var(--alpha-white) !important;
+  line-height: 1.4;
+}
+
+.hero-about .box {
+  gap: 18px;
+  align-items: center;
+}
+
+.hero-about .box .image-box {
+  margin-right: 8px;
+}
+
+/* Modalidades (accordion) */
+.accordion-header {
+  border-bottom: 1px solid var(--alpha-line);
+}
+
+.accordion-header.active .class-title h3,
+.accordion-header:hover .class-title h3 {
+  color: var(--alpha-red) !important;
+}
+
+.accordion-content .content-box img {
+  border-radius: var(--alpha-radius-lg);
+}
+
+/* Planos */
+.package-box {
+  background-color: var(--alpha-panel-2) !important;
+  border: 1px solid var(--alpha-line) !important;
+  border-radius: 24px;
+  position: relative;
+}
+
+.package-box.featured {
+  border: 2px solid var(--alpha-red) !important;
+}
+
+.popular-tag {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  background-color: var(--alpha-red);
+  color: var(--alpha-white);
+  padding: 8px 18px;
+  border-radius: var(--alpha-radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.package-box .box-body li {
+  color: var(--alpha-text-soft) !important;
+}
+
+.package-box .box-body .fa-circle-check {
+  color: var(--alpha-red) !important;
+}
+
+.package-box .box-body .fa-circle-xmark {
+  color: var(--alpha-text-muted) !important;
+}
+
+/* CORREÇÃO: header fixo na rolagem. O Fitcore não usa o componente Navbar do
+   Bootstrap, então .sticky-top sozinho perde para os seletores do template —
+   reforçado aqui. sticky (e não fixed) dispensa padding-top no body.         */
+.site-header,
+.site-header.sticky-top {
+  position: sticky !important;
+  top: 0;
+  z-index: 1030;
+  background-color: var(--alpha-bg) !important;
+  border-bottom: 1px solid var(--alpha-line);
+}
+
+.mobile-menu,
+.mobile-menu.sticky-top {
+  position: sticky !important;
+  top: 0;
+  z-index: 1031;
+  background-color: var(--alpha-bg) !important;
+}
+
+/* Em telas baixas a top-bar rouba altura útil do header fixo */
+@media (max-width: 991px) {
+  .site-header .top-bar { display: none; }
+}
+
+/* CORREÇÃO: menu mobile ilegível (texto claro sobre fundo claro/transparente).
+   Painel escuro sólido, links brancos e divisórias visíveis.                 */
+.mobile-menu .menu-content {
+  background-color: var(--alpha-panel) !important;
+  border-top: 1px solid var(--alpha-line);
+  box-shadow: var(--alpha-shadow);
+  padding: 22px 18px;
+}
+
+.mobile-menu .menu ul li {
+  border-bottom: 1px solid var(--alpha-line);
+}
+
+.mobile-menu .menu ul li:last-child {
+  border-bottom: 0;
+}
+
+.mobile-menu .menu ul li a,
+.mobile-menu .mobail-submenu li a,
+.mobile-menu .info,
+.mobile-menu .info-box,
+.mobile-menu .info-box a {
+  color: var(--alpha-white) !important;
+}
+
+.mobile-menu .menu ul li a {
+  display: block;
+  padding: 14px 4px;
+}
+
+.mobile-menu .mobail-submenu {
+  background-color: var(--alpha-panel-2) !important;
+  border-radius: var(--alpha-radius-md);
+  margin: 0 0 12px;
+  padding: 6px 12px;
+}
+
+.mobile-menu .mobail-submenu li a {
+  font-size: 0.98rem;
+  color: var(--alpha-text-soft) !important;
+}
+
+.mobile-menu .mobail-submenu li a:hover,
+.mobile-menu .menu ul li a:hover {
+  color: var(--alpha-red) !important;
+}
+
+.mobile-menu .menu-toggle i,
+.mobile-menu .search-icon i {
+  color: var(--alpha-white) !important;
+}
+
+.mobile-menu .info-box i {
+  color: var(--alpha-red) !important;
+}
+
+/* ==========================================================================
+   SEÇÕES PRÓPRIAS DA MARCA (.alpha-*)
+   Não dependem de nenhuma classe do Fitcore — só do grid do Bootstrap.
+   Foi aqui que o layout quebrou antes: a .join-section do template pinta
+   .box .text com fundo BRANCO, e o texto branco sumia dentro dela.
+   ========================================================================== */
+
+.alpha-story,
+.alpha-access {
+  padding: 120px 0;
+  background-color: var(--alpha-bg);
+}
+
+.alpha-title {
+  font-family: var(--alpha-font-display);
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: var(--alpha-tracking-display);
+  text-transform: uppercase;
+  color: var(--alpha-white);
+  margin: 14px 0 26px;
+}
+
+.alpha-text {
+  color: var(--alpha-text-soft);
+  font-size: 1.06rem;
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+
+.alpha-eyebrow-center {
+  justify-content: center;
+}
+
+.alpha-eyebrow-center::before {
+  display: none;
+}
+
+/* --- Nossa História: cards Missão / Visão / Valores --- */
+.alpha-pillars {
+  display: grid;
+  gap: 22px;
+}
+
+.alpha-pillar {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
+  border: 1px solid var(--alpha-line);
+  border-radius: var(--alpha-radius-lg);
+  padding: 28px 30px;
+  overflow: hidden;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.alpha-pillar::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--alpha-red);
+}
+
+.alpha-pillar:hover {
+  border-color: var(--alpha-line-strong);
+  transform: translateY(-4px);
+}
+
+.alpha-pillar-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--alpha-tracking-eyebrow);
+  color: var(--alpha-red);
+  margin-bottom: 12px;
+}
+
+.alpha-pillar-text {
+  font-family: var(--alpha-font-display);
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  line-height: 1.15;
+  letter-spacing: var(--alpha-tracking-display);
+  text-transform: uppercase;
+  color: var(--alpha-white);
+  margin: 0;
+}
+
+.alpha-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.alpha-chips li {
+  padding: 8px 16px;
+  border: 1px solid rgba(193, 18, 31, 0.55);
+  background-color: rgba(193, 18, 31, 0.12);
+  border-radius: var(--alpha-radius-pill);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--alpha-white);
+  white-space: nowrap;
+}
+
+/* --- Ergonomia: cabeçalho centralizado + cards --- */
+.alpha-head {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 56px;
+}
+
+.alpha-lead {
+  color: var(--alpha-text-soft);
+  font-size: 1.08rem;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.alpha-feature {
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
+  border: 1px solid var(--alpha-line);
+  border-radius: var(--alpha-radius-lg);
+  padding: 32px 30px;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.alpha-feature:hover {
+  border-color: var(--alpha-red);
+  transform: translateY(-6px);
+  box-shadow: var(--alpha-shadow);
+}
+
+.alpha-feature h3 {
+  font-family: var(--alpha-font-display);
+  font-size: 1.65rem;
+  letter-spacing: var(--alpha-tracking-display);
+  text-transform: uppercase;
+  color: var(--alpha-white) !important;
+  margin-bottom: 14px;
+}
+
+.alpha-feature p {
+  color: var(--alpha-text-soft);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* --- Tabela: cabeçalho vermelho, zebrado e hover --- */
+.alpha-table-wrap {
+  margin-top: 56px;
+  border: 1px solid var(--alpha-line);
+  border-radius: var(--alpha-radius-lg);
+  overflow: hidden;
+}
+
+.alpha-table {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--alpha-text-soft);
+  --bs-table-border-color: var(--alpha-line);
+  margin: 0;
+  width: 100%;
+}
+
+.alpha-table thead th {
+  background-color: var(--alpha-red);
+  color: var(--alpha-white);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 18px 24px;
+  border: 0;
+  white-space: nowrap;
+}
+
+.alpha-table tbody td {
+  padding: 18px 24px;
+  color: var(--alpha-text-soft);
+  border-bottom: 1px solid var(--alpha-line);
+  background-color: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Zebrado */
+.alpha-table tbody tr:nth-child(odd) td {
+  background-color: rgba(255, 255, 255, 0.028);
+}
+
+.alpha-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Hover da linha inteira */
+.alpha-table tbody tr:hover td {
+  background-color: rgba(193, 18, 31, 0.16);
+  color: var(--alpha-white);
+}
+
+.alpha-table tbody tr:hover td:first-child {
+  box-shadow: inset 3px 0 0 var(--alpha-red);
+}
+
+/* Tabela vira lista empilhada no celular, sem scroll horizontal */
+@media (max-width: 767.98px) {
+  .alpha-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .alpha-table tbody tr {
+    display: block;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--alpha-line);
+  }
+
+  .alpha-table tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .alpha-table tbody td {
+    display: grid;
+    grid-template-columns: 38% 1fr;
+    align-items: start;
+    gap: 12px;
+    padding: 10px 18px;
+    border-bottom: 0;
+  }
+
+  .alpha-table tbody td::before {
+    content: attr(data-label);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--alpha-red);
+    padding-top: 3px;
+  }
+
+  .alpha-table tbody tr:hover td:first-child {
+    box-shadow: none;
+  }
+
+  .alpha-story,
+  .alpha-access {
+    padding: 70px 0;
+  }
+
+  .alpha-pillar,
+  .alpha-feature {
+    padding: 26px 22px;
+  }
+}
+
+/* Rodapé */
+.footer-section {
+  border-top: 1px solid var(--alpha-line);
+}
+
+.footer-section a {
+  color: var(--alpha-text-soft) !important;
+  transition: color 0.2s ease;
+}
+
+.footer-section a:hover {
+  color: var(--alpha-red) !important;
+}
+
+.footer-nav {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.footer-section .end-text {
+  border-top: 1px solid var(--alpha-line);
+  padding-top: 18px;
+  color: var(--alpha-text-muted) !important;
+}
+
+
+/* --- PISO DE LEGIBILIDADE -------------------------------------------------
+   O template desce a 13-15px em 18 pontos diferentes (top-bar, rodapé,
+   legendas). Em tela pequena isso força zoom. Piso de 15px, e 16px no mobile,
+   que é também o valor abaixo do qual o iOS dá zoom automático em inputs.    */
+.top-bar,
+.top-bar a,
+.footer-section li,
+.footer-section a,
+.footer-section p,
+.package-box .box-body li,
+.mobile-menu .info-box {
+  font-size: 15px;
+}
+
+@media (max-width: 767.98px) {
+  .top-bar,
+  .top-bar a,
+  .footer-section li,
+  .footer-section a,
+  .footer-section p,
+  .package-box .box-body li,
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Pular para o conteúdo — atalho para quem navega por teclado ou leitor */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 2000;
+  background-color: var(--alpha-red);
+  color: var(--alpha-white);
+  padding: 12px 22px;
+  border-radius: 0 0 var(--alpha-radius-md) 0;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* 7. ACESSIBILIDADE -------------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--alpha-red);
+  outline-offset: 3px;
+}
+
+/* Compensa o header sticky ao navegar por âncoras */
+[id] { scroll-margin-top: 130px; }
+
+@media (max-width: 991px) {
+  [id] { scroll-margin-top: 90px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ==========================================================================
+   8. BLOCOS NOVOS
+   - Parceiros: grade fixa (3 logos, sem carrossel)
+   - Modalidades: abas (nav-pills do Bootstrap)
+   - CTA final em faixa vermelha
+   ========================================================================== */
+
+/* --- Parceiros: grade fixa ------------------------------------------------
+   Com apenas três apoiadores o carrossel não tem função: mostra menos do que
+   cabe na tela e move conteúdo sem pedido do usuário. Grade de 3 colunas que
+   viram 1 no celular. As logos continuam normalizadas em silhueta branca
+   porque suas luminosidades originais são incompatíveis entre si.           */
+.alpha-partners-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.alpha-partners-grid .alpha-partner-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 84px;
+  padding: 18px 24px;
+  border: 1px solid var(--alpha-line);
+  border-radius: var(--alpha-radius-lg);
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.alpha-partners-grid .alpha-partner-item:hover {
+  border-color: var(--alpha-line-strong);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.alpha-partners-grid img {
+  max-width: 100%;
+  height: 62px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.65;
+  transition: opacity 0.25s ease;
+}
+
+.alpha-partners-grid .alpha-partner-item:hover img {
+  opacity: 1;
+}
+
+@media (max-width: 991.98px) {
+  .alpha-partners-grid { grid-template-columns: 1fr; gap: 18px; }
+  .alpha-partners-grid img { height: 44px; }
+}
+
+/* --- Modalidades em abas -------------------------------------------------- */
+.alpha-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 34px;
+}
+
+.alpha-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 26px;
+  border: 1px solid var(--alpha-line-strong);
+  border-radius: var(--alpha-radius-pill);
+  background: transparent;
+  color: var(--alpha-text-soft);
+  font-family: var(--alpha-font-body);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.alpha-tab i { color: inherit; }
+
+.alpha-tab:hover {
+  color: var(--alpha-white);
+  border-color: var(--alpha-white);
+}
+
+.alpha-tab.active {
+  background-color: var(--alpha-red);
+  border-color: var(--alpha-red);
+  color: var(--alpha-white);
+}
+
+.alpha-tab-panel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--alpha-line);
+  border-radius: 24px;
+  padding: 34px;
+  margin: 0;
+}
+
+.alpha-tab-panel h3 {
+  font-size: clamp(2rem, 3.4vw, 2.9rem);
+  margin: 0 0 18px;
+}
+
+.alpha-tab-panel p {
+  color: var(--alpha-text-soft);
+  font-size: 1.06rem;
+  line-height: 1.8;
+  max-width: 44ch;
+  margin: 0 0 28px;
+}
+
+.alpha-tab-img {
+  display: block;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: var(--alpha-radius-lg);
+}
+
+@media (max-width: 767.98px) {
+  .alpha-tab { padding: 13px 20px; font-size: 14px; }
+  .alpha-tab-panel { padding: 22px; }
+  .alpha-tab-img { height: 240px; }
+}
+
+/* --- CTA final ------------------------------------------------------------ */
+.alpha-cta {
+  background-color: var(--alpha-red);
+}
+
+.alpha-cta .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-top: 62px;
+  padding-bottom: 62px;
+}
+
+.alpha-cta h2 {
+  font-family: var(--alpha-font-display);
+  font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: var(--alpha-tracking-display);
+  text-transform: uppercase;
+  color: var(--alpha-white) !important;
+  max-width: 24ch;
+  margin: 0;
+}
+
+.alpha-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--alpha-black);
+  color: var(--alpha-white) !important;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 20px 36px;
+  border-radius: var(--alpha-radius-md);
+  transition: background-color 0.2s ease;
+}
+
+.alpha-cta-btn:hover {
+  background-color: var(--alpha-panel-2);
+}

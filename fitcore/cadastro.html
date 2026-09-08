@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Alpha | Academia</title>
+
+    <meta name="description" content="Transforme sua performance com a Project Alpha. Academia moderna focada em saúde, bem-estar, suplementação e resultados reais.">
+    <meta property="og:title" content="Project Alpha - Academia">
+    <meta property="og:description" content="Academia moderna focada em performance, bem-estar, suplementação e resultados reais.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.projectalpha.com.br/">
+
+    <link rel="icon" type="image/png" href="assets/images/Faviicon-alpha.png">
+
+    <!-- Google Fonts — tipografia da marca Project Alpha -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Carousel -->
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.min.css">
+
+    <!-- Venobox -->
+    <link rel="stylesheet" type="text/css" href="assets/css/venobox.min.css">
+
+    <!-- Template base (NÃO EDITAR) -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- AdminLTE Framework de CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.9.1/dist/css/adminlte.min.css" />
+    
+    <!-- Customização da marca — deve ser sempre o último -->
+    <link rel="stylesheet" type="text/css" href="assets/css/custom-home.css">
+
+    <style>
+        /* Correção de Cor Botão de Arquivos do Input File */
+        .form-control::file-selector-button {
+            background-color: #e9ecef !important; 
+            color: #000000 !important;     
+            border: none !important;
+            border-right: 1px solid #000000 !important; 
+            margin-right: 10px;
+        }
+
+        /* Correção Menu Mobile */
+        .mobile-menu {
+            position: sticky !important;
+            top: 0;
+            z-index: 9999 !important;
+            background-color: #000000;
+        }
+
+        .mobile-menu .menu-content {
+            max-height: calc(100vh - 70px) !important; 
+            overflow-y: auto !important;               
+            -webkit-overflow-scrolling: touch;        
+            background-color: #111111 !important;    
+            padding: 20px !important;
+        }
+
+        .mobile-menu .menu-content ul {
+            list-style: none !important;
+            padding-left: 0 !important;
+            margin: 0 !important;
+        }
+
+        .mobile-menu .menu-content ul li {
+            margin-bottom: 10px;
+        }
+
+        .mobile-menu .menu-content a {
+            color: #ffffff !important;
+            text-decoration: none !important;
+        }
+
+        .mobile-menu .mobail-submenu {
+            padding-left: 15px !important;
+            margin-top: 5px !important;
+        }
+
+        .mobile-menu .info,
+        .mobile-menu .component {
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+        }
+
+        .mobile-menu .info .info-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cccccc;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu Computador -->
+    <header class="site-header sticky-top">
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-left">
+                    <div class="mail">
+                        <a href="mailto:contato@projectalpha.com.br"><i class="fa-solid fa-envelope"></i>contato@projectalpha.com.br</a>
+                    </div>
+                    <div class="location">
+                        <i class="fa-solid fa-location-dot"></i>Av. Alpha Performance, 1200 - Presidente Prudente, SP
+                    </div>
+                </div>
+                <div class="top-right">
+                    <div class="phone">
+                        <a href="tel:+551888887777"><i class="fa-solid fa-phone"></i>(18) 88888-7777</a>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="social">
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="menu-bar">
+                <div class="site-logo">
+                    <a href="index.html"><img src="./assets/images/Logo-nav.png" alt="Project Alpha Academia"></a>
+                </div>
+                <div class="main-menu">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li class="dropdown">
+                            <a href="#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
+                            <ul class="sub-menu">
+                                <li><a href="#sobre-nos">Nossa história</a></li>
+                                <li><a href="#ergonomia">Ergonomia e acessibilidade</a></li>
+                                <li><a href="sobre.html">Página completa</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#modalidades">Modalidades</a></li>
+                        <li><a href="#planos">Planos</a></li>
+                        <li><a href="loja.html">Loja</a></li>
+                        <li><a href="login.html">Entrar</a></li>
+                    </ul>
+                </div>
+                <div class="button">
+                    <a href="cadastro.html" rel="noopener" class="btn">Matricule-se<i class="fa-solid fa-angles-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Menu Mobile -->
+    <div class="mobile-menu sticky-top">
+        <div class="menu-bar">
+            <div class="site-logo">
+                <a href="index.html">
+                    <img src="./assets/images/Logo-nav.png" alt="Project Alpha Academia">
+                </a>
+            </div>
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+        <div class="menu-content">
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li class="mobail-dropdown">
+                        <a href="#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
+                        <ul class="mobail-submenu">
+                            <li><a href="#sobre-nos">Nossa história</a></li>
+                            <li><a href="#ergonomia">Ergonomia e acessibilidade</a></li>
+                            <li><a href="sobre.html">Página completa</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#modalidades">Modalidades</a></li>
+                    <li><a href="#planos">Planos</a></li>
+                    <li><a href="loja.html">Loja</a></li>
+                    <li><a href="login.html">Entrar</a></li>
+                </ul>
+            </div>
+            <div class="info">
+                <h3 class="title">Contato</h3>
+                <div class="info-box">
+                    <i class="fa-solid fa-location-dot"></i>
+                    Av. Alpha Performance, 1200 - Presidente Prudente, SP
+                </div>
+                <div class="info-box">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <a href="tel:+5518988885555">(18) 98888-5555</a>
+                </div>
+                <div class="info-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <a href="mailto:contato@projectalpha.com.br">contato@projectalpha.com.br</a>
+                </div>
+            </div>
+            <div class="component">
+                <div class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="button">
+                    <a href="cadastro.html" target="_blank" rel="noopener" class="btn">Matricule-se<i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteudo -->
+    <main class="container d-flex flex-column align-items-center mt-4">
+        <div class="col-lg-12 mt-5">
+            <div class="card mb-4 bg-light text-dark border-top border-danger border-3">
+                <div class="card-header">
+                    <div class="h2 text-dark mb-0">Cadastre-se agora!</div>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <!-- Linha 1: Nome e E-mail -->
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="nome">Nome<span class="required-indicator sr-only"> (required)</span></label>
+                                <input type="text" class="form-control bg-white text-dark border border-dark" id="nome" required="">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="email">E-mail<span class="required-indicator sr-only"> (required)</span></label>
+                                <input type="email" class="form-control bg-white text-dark border border-dark" id="email" required="">
+                            </div>
+                        </div>
+
+                        <!-- Linha 2: Telefone e Data de Nascimento -->
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="telefone">Telefone<span class="required-indicator sr-only"> (required)</span></label>
+                                <input type="tel" class="form-control bg-white text-dark border border-dark" id="telefone" required="">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="dataNascimento">Data de Nascimento<span class="required-indicator sr-only"> (required)</span></label>
+                                <input type="date" class="form-control bg-white text-dark border border-dark" id="dataNascimento" required="">
+                            </div>
+                        </div>
+
+                        <!-- Linha 3: CPF e Gênero -->
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="cpf">CPF<span class="required-indicator sr-only"> (required)</span></label>
+                                <input type="text" class="form-control bg-white text-dark border border-dark" id="cpf" required="">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="genero">Gênero<span class="required-indicator sr-only"> (required)</span></label>
+                                <select class="form-select bg-white text-dark border border-dark" id="genero" required="">
+                                    <option value="" disabled selected>Selecione...</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="feminino">Feminino</option>
+                                    <option value="outro">Outro / Prefiro não dizer</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Linha 4: Estado Civil e Altura -->
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="estadoCivil">Estado Civil<span class="required-indicator sr-only"> (required)</span></label>
+                                <select class="form-select bg-white text-dark border border-dark" id="estadoCivil" required="">
+                                    <option value="" disabled selected>Selecione...</option>
+                                    <option value="solteiro">Solteiro(a)</option>
+                                    <option value="casado">Casado(a)</option>
+                                    <option value="divorciado">Divorciado(a)</option>
+                                    <option value="viuvo">Viúvo(a)</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="altura">Altura (m)<span class="required-indicator sr-only"> (required)</span></label>
+                                <input type="number" step="0.01" class="form-control bg-white text-dark border border-dark" id="altura" placeholder="Ex: 1.75" required="">
+                            </div>
+                        </div>
+
+                        <!-- Linha 5: Deficiência e Modalidade -->
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="deficiencia">Possui Deficiência?<span class="required-indicator sr-only"> (required)</span></label>
+                                <input type="text" class="form-control bg-white text-dark border border-dark" id="deficiencia" placeholder="Qual? (Deixe em branco se não)">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="modalidade">Modalidade de Interesse<span class="required-indicator sr-only"> (required)</span></label>
+                                <select class="form-select bg-white text-dark border border-dark" id="modalidade" required="">
+                                    <option value="" disabled selected>Selecione...</option>
+                                    <option value="musculacao">Musculação</option>
+                                    <option value="crossfit">CrossFit</option>
+                                    <option value="natacao">Natação</option>
+                                    <option value="lutas">Artes Marciais</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Linha 6: Foto e Endereço -->
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="foto">Foto de Perfil<span class="required-indicator sr-only"> (required)</span></label>
+                                <input type="file" class="form-control bg-white text-dark border border-dark" id="foto" accept="image/*" required="">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="endereco">Endereço<span class="required-indicator sr-only"> (required)</span></label>
+                                <textarea class="form-control bg-white text-dark border border-dark" id="endereco" rows="1" required=""></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Linha 7: Senha e Confirmação -->
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="senha">Senha<span class="required-indicator sr-only"> (required)</span></label>
+                                <input type="password" class="form-control bg-white text-dark border border-dark" id="senha" required="">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="confirmaSenha">Confirmar Senha<span class="required-indicator sr-only"> (required)</span></label>
+                                <input type="password" class="form-control bg-white text-dark border border-dark" id="confirmaSenha" required="">
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <button class="btn btn-success" type="submit">Salvar</button>
+                        <button class="btn btn-danger" type="reset">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script necessário para o menu mobile -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.querySelectorAll('.mobile-menu a[href^="#"]').forEach(function (link) {
+            link.addEventListener('click', function () {
+                var content = document.querySelector('.mobile-menu .menu-content');
+                if (content) { content.style.display = 'none'; }
+            });
+        });
+    </script>
+    
+    <!-- AdminLTE Framework JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.9.1/dist/js/adminlte.min.js"></script>
+</body>
+</html>
