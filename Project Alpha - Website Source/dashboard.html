@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="pt-br" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendamento de Avaliações — Project Alpha</title>
+
+  <!-- Bootstrap 5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       Tema da marca sobre o Bootstrap
+       ========================================================== */
+    :root{
+      --brand: #C1121F;
+      --brand-2: #8F0D17;
+      --sidebar-w: 260px;
+
+      --bs-primary: #C1121F;
+      --bs-primary-rgb: 193, 18, 31;
+      --bs-body-font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      --bs-border-radius: .875rem;
+      --bs-border-radius-lg: .875rem;
+    }
+
+    /* ---------- modo escuro (padrão) ---------- */
+    [data-bs-theme="dark"]{
+      --bs-body-bg: #000;
+      --bs-body-color: #fff;
+      --bs-border-color: rgba(255,255,255,.10);
+      --bs-secondary-color: rgba(255,255,255,.65);
+      --surface: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      --surface-solid: rgba(255,255,255,.05);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --sidebar-bg: #090909;
+    }
+
+    /* ---------- modo claro ---------- */
+    [data-bs-theme="light"]{
+      --bs-body-bg: #f3f5f9;
+      --bs-body-color: #0f172a;
+      --bs-border-color: rgba(15,23,42,.18);
+      --bs-secondary-color: #475569;
+      --surface: #fff;
+      --surface-solid: #fff;
+      --shadow: 0 4px 10px rgba(15,23,42,.10), 0 1px 1px rgba(15,23,42,.06);
+      --sidebar-bg: #ffffff;
+    }
+
+    body{
+      min-height: 100vh;
+      background-image:
+        radial-gradient(1200px 600px at 20% 0%, rgba(193,18,31,.20), transparent 55%),
+        radial-gradient(900px 500px at 90% 20%, rgba(255,255,255,.05), transparent 60%);
+      background-attachment: fixed;
+    }
+
+    [data-bs-theme="light"] body{
+      background-image: linear-gradient(180deg, #ffffff, var(--bs-body-bg));
+    }
+
+    /* ==========================================================
+       Sidebar
+       ========================================================== */
+    .sidebar{
+      width: var(--sidebar-w);
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--bs-border-color);
+    }
+
+    .sidebar-brand img{
+      width: 170px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* placeholder que existia enquanto a logo não tinha caminho — removido */
+
+    .sidebar .nav-link{
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .875rem;
+      border-radius: .75rem;
+      color: var(--bs-secondary-color);
+      transition: .25s;
+    }
+
+    .sidebar .nav-link i{ width: 20px; text-align: center; }
+
+    .sidebar .nav-link:hover{
+      background: rgba(193,18,31,.15);
+      color: var(--bs-body-color);
+    }
+
+    .sidebar .nav-link.active{
+      background: linear-gradient(180deg, var(--brand), var(--brand-2));
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(193,18,31,.25);
+    }
+
+    /* desktop: sidebar fixa */
+    @media (min-width: 1200px){
+      .sidebar{
+        position: fixed;
+        inset: 0 auto 0 0;
+        transform: none !important;
+        visibility: visible !important;
+      }
+      .main-content{ margin-left: var(--sidebar-w); }
+      .sidebar .btn-close{ display: none; }
+    }
+
+    /* ==========================================================
+       Cards / superfícies
+       ========================================================== */
+    .surface{
+      background: var(--surface);
+      border: 1px solid var(--bs-border-color);
+      box-shadow: var(--shadow);
+    }
+
+    .subtle{ background: var(--surface-solid); }
+
+    /* ==========================================================
+       Botões da marca
+       ========================================================== */
+    .btn-brand{
+      background: linear-gradient(180deg, var(--brand), var(--brand-2));
+      border: 1px solid rgba(255,255,255,.12);
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(193,18,31,.35);
+    }
+    .btn-brand:hover, .btn-brand:focus{ color: #fff; filter: brightness(1.08); }
+    .btn-brand:active{ transform: translateY(1px); }
+
+    .btn-dark-soft{
+      background: linear-gradient(180deg, #2a2a2a, #151515);
+      border: 1px solid rgba(255,255,255,.10);
+      color: #fff;
+      font-weight: 700;
+    }
+    .btn-dark-soft:hover{ color:#fff; filter: brightness(1.25); }
+
+    .btn-help{
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      padding: 0;
+      line-height: 1;
+      border-radius: 50%;
+      border: 1px solid rgba(240,190,0,.35);
+      background: rgba(240,190,0,.10);
+      color: rgba(240,190,0,.88);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .btn-help:hover{ background: rgba(240,190,0,.18); color: rgba(240,190,0,1); }
+
+    /* ==========================================================
+       Tabela
+       ========================================================== */
+    .table > :not(caption) > * > *{
+      background-color: transparent;
+      border-bottom-color: var(--bs-border-color);
+    }
+
+    .table thead th{
+      font-size: .8125rem;
+      font-weight: 700;
+      color: var(--bs-secondary-color);
+      background: var(--surface-solid);
+      white-space: nowrap;
+    }
+
+    [data-bs-theme="light"] .table thead th{ background: rgba(2,6,23,.04); }
+
+    .table tbody td{ font-size: .875rem; vertical-align: middle; }
+
+    /* ==========================================================
+       Badges de status
+       ========================================================== */
+    .badge-status{
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: .75rem;
+      padding: .35em .7em;
+      border: 1px solid transparent;
+    }
+    .badge-add{  background: rgba(193,18,31,.18); border-color: rgba(193,18,31,.35); color: var(--bs-body-color); }
+    .badge-edit{ background: rgba(240,190,0,.14); border-color: rgba(240,190,0,.35); color: var(--bs-body-color); }
+    .badge-del{  background: rgba(214,69,69,.18); border-color: rgba(214,69,69,.35); color: var(--bs-body-color); }
+
+    /* ==========================================================
+       Paginação
+       ========================================================== */
+    .pagination{
+      --bs-pagination-bg: var(--surface-solid);
+      --bs-pagination-border-color: var(--bs-border-color);
+      --bs-pagination-color: var(--bs-body-color);
+      --bs-pagination-hover-bg: rgba(193,18,31,.25);
+      --bs-pagination-hover-color: var(--bs-body-color);
+      --bs-pagination-hover-border-color: var(--bs-border-color);
+      --bs-pagination-active-bg: var(--brand);
+      --bs-pagination-active-border-color: var(--brand);
+      --bs-pagination-disabled-bg: var(--surface-solid);
+      --bs-pagination-disabled-border-color: var(--bs-border-color);
+      --bs-pagination-border-radius: .625rem;
+      gap: .375rem;
+    }
+    .pagination .page-link{ min-width: 38px; text-align: center; font-weight: 600; }
+
+    /* ==========================================================
+       Formulários
+       ========================================================== */
+    .form-control, .form-select{
+      background-color: var(--surface-solid);
+      border-color: var(--bs-border-color);
+      color: var(--bs-body-color);
+      padding: .7rem .75rem;
+    }
+    .form-control:focus, .form-select:focus{
+      background-color: var(--surface-solid);
+      color: var(--bs-body-color);
+      border-color: var(--brand);
+      box-shadow: 0 0 0 .2rem rgba(193,18,31,.25);
+    }
+    [data-bs-theme="dark"] .form-control::placeholder{ color: rgba(255,255,255,.45); }
+
+    .form-label{
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--bs-secondary-color);
+      text-transform: none;
+    }
+
+    .req{ color: #ff5e5e; font-weight: 700; }
+
+    /* ícone sobreposto dentro do campo (como no layout original) */
+    .input-icon{ position: relative; }
+
+    .input-icon .form-control{ padding-right: 2.5rem; }
+
+    .input-icon > i{
+      position: absolute;
+      right: .875rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--bs-secondary-color);
+      font-size: .875rem;
+      pointer-events: none;
+    }
+
+    /* esconde o ícone nativo do Chrome pra não duplicar com o do Font Awesome */
+    .input-icon input[type="date"]::-webkit-calendar-picker-indicator,
+    .input-icon input[type="time"]::-webkit-calendar-picker-indicator{
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      width: 2.5rem;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    /* faz o navegador desenhar os controles nativos (lista do select,
+       calendário, relógio) na variante escura — sem isso a lista abre branca */
+    [data-bs-theme="dark"] .form-select,
+    [data-bs-theme="dark"] .input-icon input[type="date"],
+    [data-bs-theme="dark"] .input-icon input[type="time"]{
+      color-scheme: dark;
+    }
+
+    /* fallback pra navegadores que ignoram color-scheme na lista */
+    [data-bs-theme="dark"] .form-select option{
+      background-color: #161616;
+      color: #fff;
+    }
+
+    .invalid-feedback{ font-size: .75rem; }
+
+    /* ----------------------------------------------------------
+       Card do formulário
+
+       O card-body é flex-column: os campos ficam com a altura do
+       próprio conteúdo em vez de esticarem/comprimirem junto com
+       o card (era isso que inchava e achatava o textarea).
+       ---------------------------------------------------------- */
+    .form-card .card-body > *{ flex: 0 0 auto; }
+
+    .form-card textarea.form-control{
+      min-height: 110px;  /* nunca colapsa numa linha só */
+      max-height: 320px;  /* nem vira um bloco gigante */
+      resize: vertical;
+    }
+
+    /* o card do formulário tem a altura do próprio conteúdo e não
+       acompanha a coluna da esquerda (equivale ao align-items:start
+       do grid original) */
+    .row > [class*="col-"] > .form-card{ align-self: flex-start; }
+
+    /* ==========================================================
+       Histórico
+       ========================================================== */
+    .log-item{ border-bottom: 1px solid var(--bs-border-color); }
+    .log-item:last-child{ border-bottom: 0; }
+    .log-text{ font-size: .8125rem; line-height: 1.45; }
+    .log-meta{ font-size: .75rem; color: var(--bs-secondary-color); font-weight: 600; }
+
+    /* ==========================================================
+       Rodapé / crédito
+       ========================================================== */
+    .credit{
+      font-size: .75rem;
+      color: var(--bs-secondary-color);
+      letter-spacing: .3px;
+    }
+    .credit img{ height: 32px; width: auto; object-fit: contain; opacity: .85; }
+
+    /* ==========================================================
+       Switch de tema (pílula com lua + sol e knob deslizante)
+       ========================================================== */
+    .theme-toggle{
+      --h: 38px;
+      --w: 76px;
+      --pad: 4px;
+      position: relative;
+      width: var(--w);
+      height: var(--h);
+      flex: 0 0 auto;
+      border-radius: 999px;
+      border: 1px solid var(--bs-border-color);
+      background: var(--surface-solid);
+      cursor: pointer;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 11px;
+      margin: 0;
+    }
+
+    .theme-toggle input{
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .theme-toggle i{
+      position: relative;
+      z-index: 2;
+      font-size: .875rem;
+      line-height: 1;
+    }
+
+    .theme-toggle .fa-moon{ color: var(--bs-secondary-color); }
+    .theme-toggle .fa-sun{ color: #ffc805; }
+
+    .theme-toggle .knob{
+      position: absolute;
+      top: var(--pad);
+      left: var(--pad);
+      width: calc(var(--h) - (var(--pad) * 2));
+      height: calc(var(--h) - (var(--pad) * 2));
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.08));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 12px 26px rgba(0,0,0,.45);
+      transition: transform .22s ease;
+      z-index: 1;
+    }
+
+    [data-bs-theme="light"] .theme-toggle .knob{
+      background: linear-gradient(180deg, #fff, #e9edf4);
+      border-color: rgba(15,23,42,.12);
+      box-shadow: 0 4px 10px rgba(15,23,42,.18);
+    }
+
+    .theme-toggle input:checked ~ .knob{
+      transform: translateX(calc(var(--w) - var(--h)));
+    }
+
+    .theme-toggle:hover{ filter: brightness(1.15); }
+
+    .theme-toggle input:focus-visible ~ .knob{
+      outline: 2px solid var(--brand);
+      outline-offset: 2px;
+    }
+
+    /* pílula do contador — mesma altura do toggle e do botão de ajuda */
+    .counter-pill{
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: 0 1rem;
+      border-radius: .75rem;
+      border: 1px solid var(--bs-border-color);
+      background: var(--surface-solid);
+      color: var(--bs-secondary-color);
+      font-size: .8125rem;
+      white-space: nowrap;
+    }
+
+    .counter-pill strong{ color: var(--bs-body-color); }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================ SIDEBAR ============================ -->
+  <aside class="sidebar offcanvas-xl offcanvas-start" tabindex="-1" id="sidebar" aria-label="Menu lateral">
+
+    <div class="offcanvas-header d-xl-none">
+      <span class="fw-bold">Menu</span>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebar" aria-label="Fechar"></button>
+    </div>
+
+    <div class="offcanvas-body d-flex flex-column p-3">
+
+      <div class="sidebar-brand mb-3 d-flex justify-content-center">
+        <img src="assets/images/Logo-nav.png" alt="Project Alpha">
+      </div>
+
+      <nav class="nav flex-column gap-2">
+
+        <a href="dashboard.html" class="nav-link active" aria-current="page">
+          <i class="fa-solid fa-heart-pulse"></i>
+          <span>Avaliações</span>
+        </a>
+
+        <a href="index.html" class="nav-link">
+          <i class="fa-solid fa-house"></i>
+          <span>Site Principal</span>
+        </a>
+      </nav>
+
+    </div>
+  </aside>
+
+  <!-- ============================ CONTEÚDO ============================ -->
+  <div class="main-content p-3">
+
+    <!-- ---------- Topbar ---------- -->
+    <header class="surface rounded-3 p-3 d-flex flex-wrap align-items-center justify-content-between gap-3">
+
+      <div class="d-flex align-items-center gap-3 min-w-0">
+        <button class="btn btn-outline-secondary d-xl-none" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar" aria-label="Abrir menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <h1 class="h5 mb-0 d-flex align-items-center gap-2 text-truncate">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <i class="fa-solid fa-heart-pulse"></i>
+          <span class="text-truncate">
+            Agendamento de Avaliações ·
+            <span class="fw-normal text-body-secondary">Project Alpha</span>
+          </span>
+        </h1>
+      </div>
+
+      <div class="d-flex align-items-center gap-3 flex-wrap">
+
+        <label class="theme-toggle" title="Alternar tema">
+          <input type="checkbox" id="themeSwitch" aria-label="Alternar tema">
+          <i class="fa-solid fa-moon" aria-hidden="true"></i>
+          <i class="fa-solid fa-sun" aria-hidden="true"></i>
+          <span class="knob"></span>
+        </label>
+
+        <span class="counter-pill">
+          <strong>Avaliações Agendadas:</strong> 42
+        </span>
+
+        <button class="btn btn-help" type="button" title="Ajuda" aria-label="Ajuda">
+          <i class="fa fa-question-circle" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- ---------- Grid principal ---------- -->
+    <div class="row g-3 mt-0">
+
+      <!-- ================= COLUNA ESQUERDA ================= -->
+      <div class="col-12 col-xxl-8">
+        <div class="card surface h-100">
+          <div class="card-body p-3 p-md-4">
+
+            <!-- Barra de busca -->
+            <form class="row g-2 align-items-center mb-3" onsubmit="return false;">
+              <div class="col-12 col-lg">
+                <label for="busca" class="visually-hidden">Pesquisar</label>
+                <input id="busca" class="form-control" type="search"
+                       placeholder="Pesquisar por aluno, avaliador ou data">
+              </div>
+
+              <div class="col-auto">
+                <button class="btn btn-brand" type="submit">
+                  <i class="fa-solid fa-magnifying-glass me-1"></i> Buscar
+                </button>
+              </div>
+
+              <div class="col-12 col-sm-auto">
+                <label for="ordenar" class="visually-hidden">Ordenar por</label>
+                <select id="ordenar" class="form-select">
+                  <option selected>Ordenar por:</option>
+                  <option>Nome (A-Z)</option>
+                  <option>Nome (Z-A)</option>
+                  <option>Mais recentes</option>
+                </select>
+              </div>
+
+              <div class="col-auto">
+                <button class="btn btn-brand" type="button">+ Nova avaliação</button>
+              </div>
+
+              <div class="col-auto">
+                <button class="btn btn-outline-secondary" type="button"
+                        title="Configurar colunas da tabela" aria-label="Configurar colunas da tabela">
+                  <i class="fa-solid fa-sliders"></i>
+                </button>
+              </div>
+            </form>
+
+            <!-- Tabela -->
+            <div class="table-responsive border rounded-3">
+              <table class="table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width:28%">Aluno</th>
+                    <th scope="col" style="width:11%">Data</th>
+                    <th scope="col" style="width:9%">Horário</th>
+                    <th scope="col" style="width:22%">Avaliador</th>
+                    <th scope="col" style="width:11%">Status</th>
+                    <th scope="col" style="width:19%">Ações</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>Ismael Pirondi</td>
+                    <td>15/09/2026</td>
+                    <td>17:00</td>
+                    <td>Igor Domingos Marques</td>
+                    <td><span class="badge badge-status badge-del">Concluída</span></td>
+                    <td>
+                      <div class="d-flex gap-2 flex-nowrap">
+                        <button class="btn btn-sm btn-dark-soft text-nowrap" type="button">
+                          <i class="fa-solid fa-trash me-1"></i> Excluir
+                        </button>
+                        <button class="btn btn-sm btn-brand text-nowrap" type="button">
+                          <i class="fa-solid fa-file-lines me-1"></i> Relatório
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>William Eduardo di Martini Minorelli</td>
+                    <td>16/09/2026</td>
+                    <td>19:00</td>
+                    <td>Igor Domingos Marques</td>
+                    <td><span class="badge badge-status badge-del">Concluída</span></td>
+                    <td>
+                      <div class="d-flex gap-2 flex-nowrap">
+                        <button class="btn btn-sm btn-dark-soft text-nowrap" type="button">
+                          <i class="fa-solid fa-trash me-1"></i> Excluir
+                        </button>
+                        <button class="btn btn-sm btn-brand text-nowrap" type="button">
+                          <i class="fa-solid fa-file-lines me-1"></i> Relatório
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Ana Clara Lima</td>
+                    <td>18/09/2026</td>
+                    <td>18:00</td>
+                    <td>Igor dos Santos Pereira</td>
+                    <td><span class="badge badge-status badge-add">Confirmada</span></td>
+                    <td>
+                      <div class="d-flex gap-2 flex-nowrap">
+                        <button class="btn btn-sm btn-dark-soft text-nowrap" type="button">
+                          <i class="fa-solid fa-xmark me-1"></i> Cancelar
+                        </button>
+                        <button class="btn btn-sm btn-brand text-nowrap" type="button">
+                          <i class="fa-solid fa-calendar-days me-1"></i> Reagendar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Gustavo Santos Ribeiro de Goes</td>
+                    <td>18/09/2026</td>
+                    <td>19:00</td>
+                    <td>Igor Domingos Marques</td>
+                    <td><span class="badge badge-status badge-add">Confirmada</span></td>
+                    <td>
+                      <div class="d-flex gap-2 flex-nowrap">
+                        <button class="btn btn-sm btn-dark-soft text-nowrap" type="button">
+                          <i class="fa-solid fa-xmark me-1"></i> Cancelar
+                        </button>
+                        <button class="btn btn-sm btn-brand text-nowrap" type="button">
+                          <i class="fa-solid fa-calendar-days me-1"></i> Reagendar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Igor Domingos Marques</td>
+                    <td>19/09/2026</td>
+                    <td>18:30</td>
+                    <td>Igor dos Santos Pereira</td>
+                    <td><span class="badge badge-status badge-edit">Pendente</span></td>
+                    <td>
+                      <div class="d-flex gap-2 flex-nowrap">
+                        <button class="btn btn-sm btn-dark-soft text-nowrap" type="button">
+                          <i class="fa-solid fa-xmark me-1"></i> Cancelar
+                        </button>
+                        <button class="btn btn-sm btn-brand text-nowrap" type="button">
+                          <i class="fa-solid fa-calendar-days me-1"></i> Reagendar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Igor dos Santos Pereira</td>
+                    <td>19/09/2026</td>
+                    <td>19:30</td>
+                    <td>Ana Clara Lima</td>
+                    <td><span class="badge badge-status badge-add">Confirmada</span></td>
+                    <td>
+                      <div class="d-flex gap-2 flex-nowrap">
+                        <button class="btn btn-sm btn-dark-soft text-nowrap" type="button">
+                          <i class="fa-solid fa-xmark me-1"></i> Cancelar
+                        </button>
+                        <button class="btn btn-sm btn-brand text-nowrap" type="button">
+                          <i class="fa-solid fa-calendar-days me-1"></i> Reagendar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Kauan Felipe Oliveira Gois</td>
+                    <td>22/09/2026</td>
+                    <td>20:00</td>
+                    <td>Igor dos Santos Pereira</td>
+                    <td><span class="badge badge-status badge-edit">Pendente</span></td>
+                    <td>
+                      <div class="d-flex gap-2 flex-nowrap">
+                        <button class="btn btn-sm btn-dark-soft text-nowrap" type="button">
+                          <i class="fa-solid fa-xmark me-1"></i> Cancelar
+                        </button>
+                        <button class="btn btn-sm btn-brand text-nowrap" type="button">
+                          <i class="fa-solid fa-calendar-days me-1"></i> Reagendar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Luiggi de Aguiar Bezerra</td>
+                    <td>23/09/2026</td>
+                    <td>17:00</td>
+                    <td>Ana Clara Lima</td>
+                    <td><span class="badge badge-status badge-add">Confirmada</span></td>
+                    <td>
+                      <div class="d-flex gap-2 flex-nowrap">
+                        <button class="btn btn-sm btn-dark-soft text-nowrap" type="button">
+                          <i class="fa-solid fa-xmark me-1"></i> Cancelar
+                        </button>
+                        <button class="btn btn-sm btn-brand text-nowrap" type="button">
+                          <i class="fa-solid fa-calendar-days me-1"></i> Reagendar
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+
+                <tfoot>
+                  <tr>
+                    <td colspan="6" class="subtle border-top">
+                      <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                        <div class="small text-body-secondary">
+                          Página <strong class="text-body">1</strong> de <strong class="text-body">6</strong>
+                          <span class="opacity-75 ms-1">(42 Agendamentos)</span>
+                        </div>
+
+                        <nav aria-label="Paginação">
+                          <ul class="pagination pagination-sm mb-0">
+                            <li class="page-item disabled">
+                              <a class="page-link" href="#" aria-label="Página anterior"><i class="fa-solid fa-chevron-left"></i></a>
+                            </li>
+                            <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item disabled"><span class="page-link border-0 bg-transparent">…</span></li>
+                            <li class="page-item"><a class="page-link" href="#">6</a></li>
+                            <li class="page-item">
+                              <a class="page-link" href="#" aria-label="Próxima página"><i class="fa-solid fa-chevron-right"></i></a>
+                            </li>
+                          </ul>
+                        </nav>
+                      </div>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            <!-- Histórico de alterações -->
+            <section class="border rounded-3 mt-4 overflow-hidden">
+              <div class="subtle border-bottom p-3 d-flex flex-wrap align-items-center justify-content-between gap-2">
+                <div class="fw-bold d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-clock-rotate-left"></i>
+                  Histórico de alterações
+                </div>
+                <div class="small text-body-secondary fw-semibold">Registro das últimas ações realizadas</div>
+              </div>
+
+              <div>
+                <div class="log-item p-3">
+                  <div class="log-text">
+                    <span class="badge badge-status badge-add me-2">Agendamento</span>
+                    <strong>Avaliação agendada.</strong>
+                    A aluna <strong>Ana Clara Lima</strong> realizou o agendamento para
+                    <strong>18/09/2026 às 18:00</strong>.
+                    <div class="log-meta mt-1">Data: 17/09/2026 • Horário: 14:32</div>
+                  </div>
+                </div>
+
+                <div class="log-item p-3">
+                  <div class="log-text">
+                    <span class="badge badge-status badge-edit me-2">Reagendamento</span>
+                    <strong>Horário alterado.</strong>
+                    A avaliação de <strong>Igor Domingos Marques</strong> foi alterada para
+                    <strong>19/09/2026 às 18:30</strong>.
+                    <div class="log-meta mt-1">Data: 17/09/2026 • Horário: 13:47</div>
+                  </div>
+                </div>
+
+                <div class="log-item p-3">
+                  <div class="log-text">
+                    <span class="badge badge-status badge-del me-2">Concluída</span>
+                    <strong>Avaliação finalizada.</strong>
+                    O relatório físico de <strong>Ismael Pirondi</strong> foi registrado no sistema.
+                    <div class="log-meta mt-1">Data: 16/09/2026 • Horário: 20:15</div>
+                  </div>
+                </div>
+
+                <div class="log-item p-3">
+                  <div class="log-text">
+                    <span class="badge badge-status badge-add me-2">Nova Avaliação</span>
+                    <strong>Agendamento realizado.</strong>
+                    O aluno <strong>Luiggi de Aguiar Bezerra</strong> foi incluído na agenda de avaliações.
+                    <div class="log-meta mt-1">Data: 16/09/2026 • Horário: 18:04</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Crédito -->
+            <div class="credit border-top mt-3 pt-3 d-flex justify-content-end align-items-center gap-2">
+              <span>© 2026 • Desenvolvido por</span>
+              <img src="assets/images/Devnexus.png" alt="DevNexus">
+              <strong class="text-body">DevNexus</strong>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= COLUNA DIREITA — FORMULÁRIO ================= -->
+      <div class="col-12 col-xxl-4">
+        <div class="card surface form-card">
+
+          <div class="card-header subtle border-bottom p-3">
+            <div class="fw-bold fs-5">Agendar Avaliação Física</div>
+            <div class="small text-body-secondary fw-semibold mt-1">
+              <span class="req">*</span> Campos obrigatórios
+            </div>
+          </div>
+
+          <form id="formAvaliacao" class="needs-validation" novalidate>
+
+          <div class="card-body p-3 d-flex flex-column gap-3">
+
+            <div>
+              <label for="aluno" class="form-label">Nome do Aluno <span class="req">*</span></label>
+              <input id="aluno" name="aluno" class="form-control" placeholder="Ex.: Ana Clara Lima" required>
+              <div class="invalid-feedback">Informe o nome do aluno.</div>
+            </div>
+
+            <div>
+              <label for="data" class="form-label">Data da Avaliação <span class="req">*</span></label>
+              <div class="input-icon">
+                <input id="data" name="data" class="form-control" type="date" required>
+                <i class="fa-regular fa-calendar"></i>
+              </div>
+              <div class="invalid-feedback">Selecione a data da avaliação.</div>
+            </div>
+
+            <div>
+              <label for="hora" class="form-label">Horário <span class="req">*</span></label>
+              <div class="input-icon">
+                <input id="hora" name="hora" class="form-control" type="time" required>
+                <i class="fa-regular fa-clock"></i>
+              </div>
+              <div class="invalid-feedback">Selecione o horário.</div>
+            </div>
+
+            <div>
+              <label for="avaliador" class="form-label">Avaliador Responsável <span class="req">*</span></label>
+              <select id="avaliador" name="avaliador" class="form-select" required>
+                <option value="" selected disabled>Selecione</option>
+                <option>Ana Clara Lima</option>
+                <option>Igor Domingos Marques</option>
+                <option>Igor dos Santos Pereira</option>
+              </select>
+              <div class="invalid-feedback">Escolha o avaliador responsável.</div>
+            </div>
+
+            <div>
+              <label for="objetivo" class="form-label">Objetivo Principal</label>
+              <select id="objetivo" class="form-select">
+                <option>Hipertrofia</option>
+                <option>Emagrecimento</option>
+                <option>Condicionamento Físico</option>
+                <option>Performance Esportiva</option>
+                <option>Qualidade de Vida</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="obs" class="form-label">Observações</label>
+              <textarea id="obs" class="form-control" rows="3"
+                        placeholder="Informações adicionais sobre o aluno..."></textarea>
+            </div>
+
+          </div>
+
+          <div class="card-footer subtle border-top p-3 d-flex justify-content-end gap-2">
+            <button type="reset" class="btn btn-outline-secondary">Limpar</button>
+            <button type="submit" class="btn btn-brand">Agendar Avaliação</button>
+          </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Alternância de tema usando o data-bs-theme nativo do Bootstrap 5.3
+    const themeSwitch = document.getElementById('themeSwitch');
+
+    themeSwitch.addEventListener('change', () => {
+      document.documentElement.setAttribute(
+        'data-bs-theme',
+        themeSwitch.checked ? 'light' : 'dark'
+      );
+    });
+
+    // Validação do Bootstrap: o 'novalidate' desliga o balão nativo do navegador
+    // e a classe 'was-validated' liga as bordas verde/vermelha + .invalid-feedback
+    document.querySelectorAll('.needs-validation').forEach((form) => {
+      form.addEventListener('submit', (event) => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      });
+
+      // ao limpar, some com o estado de validação também
+      form.addEventListener('reset', () => {
+        form.classList.remove('was-validated');
+      });
+    });
+  </script>
+
+  <!-- caminho: Project Alpha - Website Source/assets/js/acessibilidade.js -->
+  <script src="assets/js/acessibilidade.js" defer></script>
+</body>
+</html>
