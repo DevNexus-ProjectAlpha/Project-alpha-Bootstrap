@@ -436,6 +436,35 @@ body,
 }
 
 @media (max-width: 767.98px) {
+  .hero-section .hero-content {
+    position: relative;
+    min-height: 620px;
+    box-sizing: border-box;
+    background-position: right center;
+    background-size: cover;
+  }
+
+  .hero-section .hero-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.7) 48%, rgba(0, 0, 0, 0.2) 100%);
+  }
+
+  .hero-section .hero-content > .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-section .hero-slide-mobile {
+    background-image: url('../images/hero-mobile.jpg') !important;
+  }
+
+  .hero-section .hero-slide-work4 {
+    background-image: url('../images/work-4.png') !important;
+  }
+
   .hero-section .hero-content .heading {
     max-width: 100%;
     font-size: clamp(2.4rem, 11vw, 3.4rem) !important;
