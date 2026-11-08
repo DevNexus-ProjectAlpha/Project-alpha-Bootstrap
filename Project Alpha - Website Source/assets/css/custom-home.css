@@ -802,27 +802,294 @@ body,
 
 .alpha-teachers-grid {
   margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.alpha-teacher-col {
+  width: auto;
+  max-width: 100%;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  padding: 0;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .alpha-teacher-card {
+  width: 175px;
+  flex-shrink: 0;
   height: 100%;
   padding: 18px 14px 16px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--alpha-line);
   border-radius: 20px;
   text-align: center;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
 }
 
 .alpha-teacher-card:hover {
   transform: translateY(-6px);
   border-color: rgba(193, 18, 31, 0.6);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.alpha-teacher-card:focus-visible {
+  outline: 2px solid var(--alpha-red);
+  outline-offset: 3px;
+}
+
+.alpha-teacher-card.is-active {
+  transform: none;
+  border-color: var(--alpha-red);
+  box-shadow: 0 0 25px rgba(193, 18, 31, 0.45);
+  background: rgba(193, 18, 31, 0.06);
+}
+
+.alpha-teacher-action {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--alpha-text-soft);
+  transition: all 0.25s ease;
+}
+
+.alpha-teacher-card:hover .alpha-teacher-action {
+  background: rgba(193, 18, 31, 0.2);
+  border-color: rgba(193, 18, 31, 0.5);
+  color: var(--alpha-white);
+}
+
+.alpha-teacher-action .cta-icon {
+  font-size: 0.7rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.alpha-teacher-card.is-active .alpha-teacher-action {
+  background: var(--alpha-red);
+  border-color: var(--alpha-red);
+  color: var(--alpha-white);
+}
+
+.alpha-teacher-card.is-active .alpha-teacher-action .cta-icon {
+  transform: rotate(180deg);
+}
+
+/* Modal de Informações dos Professores (lado direito do card, mesma altura e empurra os outros para o lado) */
+.alpha-teacher-modal {
+  display: none;
+  position: relative;
+  width: 260px;
+  margin-left: 14px;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+.alpha-teacher-modal.is-open {
+  display: flex;
+  flex-direction: column;
+  animation: alphaModalSlideIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes alphaModalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.alpha-teacher-modal-arrow {
+  position: absolute;
+  top: 50%;
+  left: -8px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid rgba(193, 18, 31, 0.75);
+  border-left: none;
+  z-index: 2;
+}
+
+/* Versão Mobile (< 768px): fluxo vertical abaixo do card */
+@media (max-width: 767.98px) {
+  .alpha-teachers-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .alpha-teacher-col {
+    width: 100%;
+    max-width: 360px;
+    flex-direction: column;
+  }
+
+  .alpha-teacher-card {
+    width: 100%;
+  }
+
+  .alpha-teacher-modal {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 14px;
+    height: auto;
+  }
+
+  .alpha-teacher-modal-arrow {
+    display: none;
+  }
+}
+
+.alpha-teacher-modal-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  background: #111111;
+  background: linear-gradient(180deg, #181818 0%, #0d0d0d 100%);
+  border: 1px solid rgba(193, 18, 31, 0.45);
+  border-radius: 20px;
+  padding: 18px 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(193, 18, 31, 0.15);
+  text-align: left;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.alpha-teacher-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--alpha-text-muted);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  z-index: 3;
+}
+
+.alpha-teacher-modal-close:hover {
+  background: var(--alpha-red);
+  color: var(--alpha-white);
+  border-color: var(--alpha-red);
+}
+
+.alpha-teacher-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  background: rgba(193, 18, 31, 0.16);
+  border: 1px solid rgba(193, 18, 31, 0.45);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ff4d5a;
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+}
+
+.alpha-teacher-modal-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--alpha-white);
+  margin: 0 0 2px;
+  font-family: var(--alpha-font-body);
+}
+
+.alpha-teacher-modal-role {
+  font-size: 0.76rem;
+  color: var(--alpha-text-muted);
+  margin: 0 0 8px;
+}
+
+.alpha-teacher-modal-bio {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--alpha-text-soft);
+  margin: 0 0 10px;
+}
+
+.alpha-teacher-modal-group {
+  margin-bottom: 8px;
+}
+
+.alpha-teacher-modal-group:last-child {
+  margin-bottom: 0;
+}
+
+.alpha-teacher-modal-group .group-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--alpha-text-muted);
+  margin-bottom: 4px;
+}
+
+.alpha-teacher-modal-group .group-title i {
+  color: var(--alpha-red);
+}
+
+.alpha-teacher-modal-group .group-desc {
+  font-size: 0.78rem;
+  color: var(--alpha-white);
+  margin: 0;
+  font-weight: 500;
+}
+
+.alpha-teacher-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.alpha-teacher-chips .chip {
+  display: inline-block;
+  padding: 2px 7px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  font-size: 0.7rem;
+  color: #e2e2e2;
+  font-weight: 500;
 }
 
 .alpha-teacher-photo {
@@ -1374,4 +1641,315 @@ body,
 
 .alpha-cta-btn:hover {
   background-color: var(--alpha-panel-2);
+}
+
+/* --- Galeria de Fotos e Modal Lightbox ------------------------------------ */
+.alpha-gallery-section {
+  padding: 110px 0;
+  background: linear-gradient(180deg, rgba(193, 18, 31, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+  position: relative;
+}
+
+.alpha-gallery-grid {
+  margin-top: 36px;
+}
+
+.alpha-gallery-item {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #111111;
+  border: 1px solid var(--alpha-line);
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+  height: 100%;
+}
+
+.alpha-gallery-item:hover,
+.alpha-gallery-item:focus-visible {
+  transform: translateY(-6px);
+  border-color: rgba(193, 18, 31, 0.6);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(193, 18, 31, 0.25);
+}
+
+.alpha-gallery-thumb {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.alpha-gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.alpha-gallery-item:hover .alpha-gallery-thumb img {
+  transform: scale(1.08);
+}
+
+.alpha-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.88) 100%);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+.alpha-gallery-item:hover .alpha-gallery-overlay,
+.alpha-gallery-item:focus-visible .alpha-gallery-overlay {
+  opacity: 1;
+}
+
+.alpha-gallery-overlay i {
+  font-size: 1.8rem;
+  color: var(--alpha-red);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+  transform: scale(0.85);
+  transition: transform 0.3s ease;
+}
+
+.alpha-gallery-item:hover .alpha-gallery-overlay i {
+  transform: scale(1);
+}
+
+.alpha-gallery-item-title {
+  color: var(--alpha-white);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Modal Lightbox de Imagem */
+.alpha-gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.alpha-gallery-modal.is-open {
+  display: flex;
+  opacity: 1;
+}
+
+.alpha-gallery-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+}
+
+.alpha-gallery-dialog {
+  position: relative;
+  z-index: 1;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  outline: none;
+}
+
+.alpha-gallery-stage {
+  max-width: 100%;
+  max-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alpha-gallery-full-img {
+  max-width: 90vw;
+  max-height: 72vh;
+  object-fit: contain;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(193, 18, 31, 0.3);
+  animation: alphaZoomIn 0.25s ease forwards;
+}
+
+@keyframes alphaZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.alpha-gallery-info {
+  margin-top: 14px;
+  text-align: center;
+  color: var(--alpha-white);
+}
+
+.alpha-gallery-modal-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--alpha-white);
+  font-family: var(--alpha-font-body);
+}
+
+.alpha-gallery-modal-desc {
+  font-size: 0.85rem;
+  color: var(--alpha-text-soft);
+  margin: 0 0 6px;
+}
+
+.alpha-gallery-counter {
+  font-size: 0.75rem;
+  color: var(--alpha-text-muted);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.alpha-gallery-modal-close {
+  position: absolute;
+  top: -46px;
+  right: -10px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--alpha-white);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.alpha-gallery-modal-close:hover {
+  background: var(--alpha-red);
+  border-color: var(--alpha-red);
+  transform: scale(1.1);
+}
+
+.alpha-gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--alpha-white);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.alpha-gallery-nav:hover {
+  background: var(--alpha-red);
+  border-color: var(--alpha-red);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.alpha-gallery-nav.prev {
+  left: -60px;
+}
+
+.alpha-gallery-nav.next {
+  right: -60px;
+}
+
+@media (max-width: 767.98px) {
+  .alpha-gallery-thumb {
+    height: 160px;
+  }
+  .alpha-gallery-nav.prev {
+    left: 8px;
+  }
+  .alpha-gallery-nav.next {
+    right: 8px;
+  }
+  .alpha-gallery-modal-close {
+    top: -42px;
+    right: 0;
+  }
+}
+
+/* Controle de exibição (4 imagens iniciais + botão Ver Mais) */
+.alpha-gallery-item-col.is-hidden {
+  display: none !important;
+}
+
+.alpha-gallery-item-col.is-revealed {
+  animation: alphaGalleryFadeIn 0.45s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes alphaGalleryFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alpha-gallery-actions {
+  margin-top: 42px;
+}
+
+.alpha-gallery-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(193, 18, 31, 0.55);
+  color: var(--alpha-white);
+  padding: 15px 36px;
+  border-radius: var(--alpha-radius-pill);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.28s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(193, 18, 31, 0.15);
+}
+
+.alpha-gallery-btn:hover {
+  background: var(--alpha-red);
+  border-color: var(--alpha-red);
+  color: var(--alpha-white);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(193, 18, 31, 0.45);
+}
+
+.alpha-gallery-btn i {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.alpha-gallery-btn.is-expanded i {
+  transform: rotate(180deg);
 }

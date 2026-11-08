@@ -1,0 +1,2 @@
+## Na Página Index na Seção de Professores
+Nos Cards dos Professores reture do modal essa informação CREF 052341-G/SP, e faça com que o modal nao tampe nenhum profissional, mas que esses profissionais vao para o lado.

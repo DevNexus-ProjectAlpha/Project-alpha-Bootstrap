@@ -86,6 +86,7 @@
             </li>
             <li><a href="#modalidades">Modalidades</a></li>
             <li><a href="#planos">Planos</a></li>
+            <li><a href="#galeria">Galeria</a></li>
             <li><a href="login.html">Entrar</a></li>
           </ul>
         </div>
@@ -375,54 +376,209 @@
       </div>
 
       <div class="row g-4 alpha-teachers-grid">
-        <div class="col-sm-6 col-lg-2">
-          <article class="alpha-teacher-card">
+        <div class="col-sm-6 col-lg-2 alpha-teacher-col">
+          <article class="alpha-teacher-card" role="button" tabindex="0" aria-expanded="false" aria-controls="modal-prof-1" id="card-prof-1">
             <div class="alpha-teacher-photo">
               <img src="assets/images/member-1.png" alt="Profissional Ana Silva" loading="lazy">
             </div>
             <h3>Ana Silva</h3>
             <p>Personal trainer</p>
+            <div class="alpha-teacher-action">
+              <span class="alpha-teacher-action-text">Ver detalhes</span>
+              <i class="fa-solid fa-chevron-down cta-icon" aria-hidden="true"></i>
+            </div>
           </article>
+
+          <!-- Modal lateral de informações do professor: Ana Silva -->
+          <div class="alpha-teacher-modal" id="modal-prof-1" role="dialog" aria-modal="false" aria-labelledby="modal-prof-1-name">
+            <div class="alpha-teacher-modal-arrow" aria-hidden="true"></div>
+            <div class="alpha-teacher-modal-inner">
+              <button type="button" class="alpha-teacher-modal-close" aria-label="Fechar detalhes da Ana Silva">&times;</button>
+              <div class="alpha-teacher-modal-head">
+                <h4 id="modal-prof-1-name" class="alpha-teacher-modal-name">Ana Silva</h4>
+                <p class="alpha-teacher-modal-role">Personal Trainer • 8+ anos de exp.</p>
+              </div>
+              <div class="alpha-teacher-modal-body">
+                <p class="alpha-teacher-modal-bio">Especialista em biomecânica aplicada, hipertrofia muscular e emagrecimento com metodologia individualizada e foco em resultados reais.</p>
+                <div class="alpha-teacher-modal-group">
+                  <span class="group-title"><i class="fa-solid fa-dumbbell"></i> Especialidades</span>
+                  <div class="alpha-teacher-chips">
+                    <span class="chip">Hipertrofia</span>
+                    <span class="chip">Musculação</span>
+                    <span class="chip">Reabilitação</span>
+                  </div>
+                </div>
+                <div class="alpha-teacher-modal-group">
+                  <span class="group-title"><i class="fa-solid fa-clock"></i> Horário</span>
+                  <p class="group-desc">Seg a Sex • 06h00 às 12h00</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="col-sm-6 col-lg-2">
-          <article class="alpha-teacher-card">
+        <div class="col-sm-6 col-lg-2 alpha-teacher-col">
+          <article class="alpha-teacher-card" role="button" tabindex="0" aria-expanded="false" aria-controls="modal-prof-2" id="card-prof-2">
             <div class="alpha-teacher-photo">
               <img src="assets/images/member-2.png" alt="Profissional Bruno Costa" loading="lazy">
             </div>
             <h3>Bruno Costa</h3>
             <p>Treinamento funcional</p>
+            <div class="alpha-teacher-action">
+              <span class="alpha-teacher-action-text">Ver detalhes</span>
+              <i class="fa-solid fa-chevron-down cta-icon" aria-hidden="true"></i>
+            </div>
           </article>
+
+          <!-- Modal lateral de informações do professor: Bruno Costa -->
+          <div class="alpha-teacher-modal" id="modal-prof-2" role="dialog" aria-modal="false" aria-labelledby="modal-prof-2-name">
+            <div class="alpha-teacher-modal-arrow" aria-hidden="true"></div>
+            <div class="alpha-teacher-modal-inner">
+              <button type="button" class="alpha-teacher-modal-close" aria-label="Fechar detalhes do Bruno Costa">&times;</button>
+              <div class="alpha-teacher-modal-head">
+                <h4 id="modal-prof-2-name" class="alpha-teacher-modal-name">Bruno Costa</h4>
+                <p class="alpha-teacher-modal-role">Treinamento Funcional • 6+ anos de exp.</p>
+              </div>
+              <div class="alpha-teacher-modal-body">
+                <p class="alpha-teacher-modal-bio">Treinador focado em força, condicionamento metabólico e mobilidade articular, com sessões dinâmicas de alta intensidade (HIIT).</p>
+                <div class="alpha-teacher-modal-group">
+                  <span class="group-title"><i class="fa-solid fa-dumbbell"></i> Especialidades</span>
+                  <div class="alpha-teacher-chips">
+                    <span class="chip">Funcional</span>
+                    <span class="chip">HIIT</span>
+                    <span class="chip">Mobilidade</span>
+                  </div>
+                </div>
+                <div class="alpha-teacher-modal-group">
+                  <span class="group-title"><i class="fa-solid fa-clock"></i> Horário</span>
+                  <p class="group-desc">Seg a Sex • 07h00 às 13h00</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="col-sm-6 col-lg-2">
-          <article class="alpha-teacher-card">
+        <div class="col-sm-6 col-lg-2 alpha-teacher-col">
+          <article class="alpha-teacher-card" role="button" tabindex="0" aria-expanded="false" aria-controls="modal-prof-3" id="card-prof-3">
             <div class="alpha-teacher-photo">
               <img src="assets/images/member-3.png" alt="Profissional Carla Mendes" loading="lazy">
             </div>
             <h3>Carla Mendes</h3>
             <p>Ergonomia</p>
+            <div class="alpha-teacher-action">
+              <span class="alpha-teacher-action-text">Ver detalhes</span>
+              <i class="fa-solid fa-chevron-down cta-icon" aria-hidden="true"></i>
+            </div>
           </article>
+
+          <!-- Modal lateral de informações do professor: Carla Mendes -->
+          <div class="alpha-teacher-modal" id="modal-prof-3" role="dialog" aria-modal="false" aria-labelledby="modal-prof-3-name">
+            <div class="alpha-teacher-modal-arrow" aria-hidden="true"></div>
+            <div class="alpha-teacher-modal-inner">
+              <button type="button" class="alpha-teacher-modal-close" aria-label="Fechar detalhes da Carla Mendes">&times;</button>
+              <div class="alpha-teacher-modal-head">
+                <h4 id="modal-prof-3-name" class="alpha-teacher-modal-name">Carla Mendes</h4>
+                <p class="alpha-teacher-modal-role">Ergonomia & Fisioterapia • 10+ anos exp.</p>
+              </div>
+              <div class="alpha-teacher-modal-body">
+                <p class="alpha-teacher-modal-bio">Fisioterapeuta e consultora ergonômica, especialista em alinhamento postural, prevenção de lesões e reabilitação esportiva.</p>
+                <div class="alpha-teacher-modal-group">
+                  <span class="group-title"><i class="fa-solid fa-dumbbell"></i> Especialidades</span>
+                  <div class="alpha-teacher-chips">
+                    <span class="chip">Ergonomia</span>
+                    <span class="chip">Postura</span>
+                    <span class="chip">Pilates</span>
+                  </div>
+                </div>
+                <div class="alpha-teacher-modal-group">
+                  <span class="group-title"><i class="fa-solid fa-clock"></i> Horário</span>
+                  <p class="group-desc">Ter e Qui • 08h00 às 16h00</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="col-sm-6 col-lg-2">
-          <article class="alpha-teacher-card">
+        <div class="col-sm-6 col-lg-2 alpha-teacher-col">
+          <article class="alpha-teacher-card" role="button" tabindex="0" aria-expanded="false" aria-controls="modal-prof-4" id="card-prof-4">
             <div class="alpha-teacher-photo">
               <img src="assets/images/member-4.png" alt="Profissional Diego Rocha" loading="lazy">
             </div>
             <h3>Diego Rocha</h3>
             <p>Cardio</p>
+            <div class="alpha-teacher-action">
+              <span class="alpha-teacher-action-text">Ver detalhes</span>
+              <i class="fa-solid fa-chevron-down cta-icon" aria-hidden="true"></i>
+            </div>
           </article>
+
+          <!-- Modal lateral de informações do professor: Diego Rocha -->
+          <div class="alpha-teacher-modal" id="modal-prof-4" role="dialog" aria-modal="false" aria-labelledby="modal-prof-4-name">
+            <div class="alpha-teacher-modal-arrow" aria-hidden="true"></div>
+            <div class="alpha-teacher-modal-inner">
+              <button type="button" class="alpha-teacher-modal-close" aria-label="Fechar detalhes do Diego Rocha">&times;</button>
+              <div class="alpha-teacher-modal-head">
+                <h4 id="modal-prof-4-name" class="alpha-teacher-modal-name">Diego Rocha</h4>
+                <p class="alpha-teacher-modal-role">Cardio & Performance • 7+ anos de exp.</p>
+              </div>
+              <div class="alpha-teacher-modal-body">
+                <p class="alpha-teacher-modal-bio">Treinador focado em resistência cardiovascular, corrida de rua, spinning e treinos intervalados de queima de gordura acelerada.</p>
+                <div class="alpha-teacher-modal-group">
+                  <span class="group-title"><i class="fa-solid fa-dumbbell"></i> Especialidades</span>
+                  <div class="alpha-teacher-chips">
+                    <span class="chip">Cardio HIIT</span>
+                    <span class="chip">Spinning</span>
+                    <span class="chip">Running</span>
+                  </div>
+                </div>
+                <div class="alpha-teacher-modal-group">
+                  <span class="group-title"><i class="fa-solid fa-clock"></i> Horário</span>
+                  <p class="group-desc">Seg a Sex • 14h00 às 21h00</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="col-sm-6 col-lg-2">
-          <article class="alpha-teacher-card">
+        <div class="col-sm-6 col-lg-2 alpha-teacher-col">
+          <article class="alpha-teacher-card" role="button" tabindex="0" aria-expanded="false" aria-controls="modal-prof-5" id="card-prof-5">
             <div class="alpha-teacher-photo">
               <img src="assets/images/member-5.png" alt="Profissional Elaine Souza" loading="lazy">
             </div>
             <h3>Elaine Souza</h3>
             <p>Bem-estar</p>
+            <div class="alpha-teacher-action">
+              <span class="alpha-teacher-action-text">Ver detalhes</span>
+              <i class="fa-solid fa-chevron-down cta-icon" aria-hidden="true"></i>
+            </div>
           </article>
+
+          <!-- Modal lateral de informações do professor: Elaine Souza -->
+          <div class="alpha-teacher-modal" id="modal-prof-5" role="dialog" aria-modal="false" aria-labelledby="modal-prof-5-name">
+            <div class="alpha-teacher-modal-arrow" aria-hidden="true"></div>
+            <div class="alpha-teacher-modal-inner">
+              <button type="button" class="alpha-teacher-modal-close" aria-label="Fechar detalhes da Elaine Souza">&times;</button>
+              <div class="alpha-teacher-modal-head">
+                <h4 id="modal-prof-5-name" class="alpha-teacher-modal-name">Elaine Souza</h4>
+                <p class="alpha-teacher-modal-role">Bem-Estar & Yoga • 9+ anos de exp.</p>
+              </div>
+              <div class="alpha-teacher-modal-body">
+                <p class="alpha-teacher-modal-bio">Instrutora de Yoga e Mobilidade focada no equilíbrio corporal, alívio de tensões diárias, postura e recuperação física ativa.</p>
+                <div class="alpha-teacher-modal-group">
+                  <span class="group-title"><i class="fa-solid fa-dumbbell"></i> Especialidades</span>
+                  <div class="alpha-teacher-chips">
+                    <span class="chip">Yoga</span>
+                    <span class="chip">Alongamento</span>
+                    <span class="chip">Mindfulness</span>
+                  </div>
+                </div>
+                <div class="alpha-teacher-modal-group">
+                  <span class="group-title"><i class="fa-solid fa-clock"></i> Horário</span>
+                  <p class="group-desc">Seg, Qua e Sex • 15h00 às 21h00</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -597,6 +753,217 @@
 
   <!-- End Planos Section -->
 
+  <!-- Start Galeria Section -->
+
+  <section class="alpha-gallery-section" id="galeria">
+    <div class="container">
+      <div class="alpha-head text-center">
+        <span class="alpha-eyebrow alpha-eyebrow-center">Nossos Espaços & Equipe</span>
+        <h2 class="alpha-title">Galeria de <span class="text-brand">Fotos</span></h2>
+        <p class="alpha-lead">Explore a estrutura moderna, equipamentos de alta tecnologia e o ambiente planejado da Project Alpha.</p>
+      </div>
+
+      <div class="row g-4 alpha-gallery-grid" id="galleryGrid">
+        <!-- Foto 1 -->
+        <div class="col-6 col-md-4 col-lg-3 alpha-gallery-item-col">
+          <div class="alpha-gallery-item" role="button" tabindex="0" data-img-src="assets/images/hero1-bg.jpg" data-img-title="Área Principal de Musculação" data-img-desc="Ambiente moderno com aparelhos de última geração">
+            <div class="alpha-gallery-thumb">
+              <img src="assets/images/hero1-bg.jpg" alt="Área Principal de Musculação" loading="lazy">
+              <div class="alpha-gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span class="alpha-gallery-item-title">Área de Musculação</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 2 -->
+        <div class="col-6 col-md-4 col-lg-3 alpha-gallery-item-col">
+          <div class="alpha-gallery-item" role="button" tabindex="0" data-img-src="assets/images/hero1-bg2.jpg" data-img-title="Espaço de Alta Performance" data-img-desc="Área integrada para treinos intensos">
+            <div class="alpha-gallery-thumb">
+              <img src="assets/images/hero1-bg2.jpg" alt="Espaço de Alta Performance" loading="lazy">
+              <div class="alpha-gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span class="alpha-gallery-item-title">Alta Performance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 3 -->
+        <div class="col-6 col-md-4 col-lg-3 alpha-gallery-item-col">
+          <div class="alpha-gallery-item" role="button" tabindex="0" data-img-src="assets/images/class-img-01.jpg" data-img-title="Sala de Treinamento e Aulas" data-img-desc="Espaço climatizado e amplo">
+            <div class="alpha-gallery-thumb">
+              <img src="assets/images/class-img-01.jpg" alt="Sala de Treinamento e Aulas" loading="lazy">
+              <div class="alpha-gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span class="alpha-gallery-item-title">Aulas Coletivas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 4 -->
+        <div class="col-6 col-md-4 col-lg-3 alpha-gallery-item-col">
+          <div class="alpha-gallery-item" role="button" tabindex="0" data-img-src="assets/images/class-img-2.png" data-img-title="Equipamentos de Musculação" data-img-desc="Biomecânica de ponta para hipertrofia">
+            <div class="alpha-gallery-thumb">
+              <img src="assets/images/class-img-2.png" alt="Equipamentos de Musculação" loading="lazy">
+              <div class="alpha-gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span class="alpha-gallery-item-title">Equipamentos Biomecânicos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 5 (Inicialmente oculta) -->
+        <div class="col-6 col-md-4 col-lg-3 alpha-gallery-item-col is-hidden">
+          <div class="alpha-gallery-item" role="button" tabindex="0" data-img-src="assets/images/gallery-5.jpg" data-img-title="Espaço Funcional & Cardio" data-img-desc="Circuito funcional completo e esteiras modernas">
+            <div class="alpha-gallery-thumb">
+              <img src="assets/images/gallery-5.jpg" alt="Espaço Funcional & Cardio" loading="lazy">
+              <div class="alpha-gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span class="alpha-gallery-item-title">Funcional & Cardio</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 6 (Inicialmente oculta) -->
+        <div class="col-6 col-md-4 col-lg-3 alpha-gallery-item-col is-hidden">
+          <div class="alpha-gallery-item" role="button" tabindex="0" data-img-src="assets/images/work-4.png" data-img-title="Ambiente & Ergonomia" data-img-desc="Estrutura com acessibilidade e iluminação planejada">
+            <div class="alpha-gallery-thumb">
+              <img src="assets/images/work-4.png" alt="Ambiente & Ergonomia" loading="lazy">
+              <div class="alpha-gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span class="alpha-gallery-item-title">Ambiente Ergonômico</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 7 (Inicialmente oculta) -->
+        <div class="col-6 col-md-4 col-lg-3 alpha-gallery-item-col is-hidden">
+          <div class="alpha-gallery-item" role="button" tabindex="0" data-img-src="assets/images/blog-1.jpg" data-img-title="Saúde, Nutrição & Performance" data-img-desc="Foco em resultados sustentáveis e bem-estar">
+            <div class="alpha-gallery-thumb">
+              <img src="assets/images/blog-1.jpg" alt="Saúde, Nutrição & Performance" loading="lazy">
+              <div class="alpha-gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span class="alpha-gallery-item-title">Saúde & Bem-Estar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 8 (Inicialmente oculta) -->
+        <div class="col-6 col-md-4 col-lg-3 alpha-gallery-item-col is-hidden">
+          <div class="alpha-gallery-item" role="button" tabindex="0" data-img-src="assets/images/hero-mobile.jpg" data-img-title="Treinos e Superação" data-img-desc="Ambiente motivador e infraestrutura completa">
+            <div class="alpha-gallery-thumb">
+              <img src="assets/images/hero-mobile.jpg" alt="Treinos e Superação" loading="lazy">
+              <div class="alpha-gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span class="alpha-gallery-item-title">Superação & Treino</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 9 (Inicialmente oculta) -->
+        <div class="col-6 col-md-4 col-lg-3 alpha-gallery-item-col is-hidden">
+          <div class="alpha-gallery-item" role="button" tabindex="0" data-img-src="assets/images/member-1.png" data-img-title="Profissional Ana Silva" data-img-desc="Personal Trainer • Musculação e Biomecânica">
+            <div class="alpha-gallery-thumb">
+              <img src="assets/images/member-1.png" alt="Profissional Ana Silva" loading="lazy">
+              <div class="alpha-gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span class="alpha-gallery-item-title">Ana Silva</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 10 (Inicialmente oculta) -->
+        <div class="col-6 col-md-4 col-lg-3 alpha-gallery-item-col is-hidden">
+          <div class="alpha-gallery-item" role="button" tabindex="0" data-img-src="assets/images/member-2.png" data-img-title="Profissional Bruno Costa" data-img-desc="Instrutor • Treinamento Funcional & HIIT">
+            <div class="alpha-gallery-thumb">
+              <img src="assets/images/member-2.png" alt="Profissional Bruno Costa" loading="lazy">
+              <div class="alpha-gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span class="alpha-gallery-item-title">Bruno Costa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 11 (Inicialmente oculta) -->
+        <div class="col-6 col-md-4 col-lg-3 alpha-gallery-item-col is-hidden">
+          <div class="alpha-gallery-item" role="button" tabindex="0" data-img-src="assets/images/member-3.png" data-img-title="Profissional Carla Mendes" data-img-desc="Fisioterapeuta • Ergonomia & Postura">
+            <div class="alpha-gallery-thumb">
+              <img src="assets/images/member-3.png" alt="Profissional Carla Mendes" loading="lazy">
+              <div class="alpha-gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span class="alpha-gallery-item-title">Carla Mendes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 12 (Inicialmente oculta) -->
+        <div class="col-6 col-md-4 col-lg-3 alpha-gallery-item-col is-hidden">
+          <div class="alpha-gallery-item" role="button" tabindex="0" data-img-src="assets/images/member-4.png" data-img-title="Profissional Diego Rocha" data-img-desc="Treinador • Cardio & Spinning">
+            <div class="alpha-gallery-thumb">
+              <img src="assets/images/member-4.png" alt="Profissional Diego Rocha" loading="lazy">
+              <div class="alpha-gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span class="alpha-gallery-item-title">Diego Rocha</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foto 13 (Inicialmente oculta) -->
+        <div class="col-6 col-md-4 col-lg-3 alpha-gallery-item-col is-hidden">
+          <div class="alpha-gallery-item" role="button" tabindex="0" data-img-src="assets/images/member-5.png" data-img-title="Profissional Elaine Souza" data-img-desc="Instrutora • Bem-Estar, Yoga & Alongamento">
+            <div class="alpha-gallery-thumb">
+              <img src="assets/images/member-5.png" alt="Profissional Elaine Souza" loading="lazy">
+              <div class="alpha-gallery-overlay">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span class="alpha-gallery-item-title">Elaine Souza</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botão para desbloquear as fotos restantes -->
+      <div class="text-center alpha-gallery-actions mt-4">
+        <button type="button" class="alpha-gallery-btn" id="galleryToggleBtn" aria-expanded="false" aria-controls="galleryGrid">
+          <span class="btn-text">Ver mais fotos</span>
+          <i class="fa-solid fa-chevron-down ms-2" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Lightbox da Galeria de Imagens -->
+  <div class="alpha-gallery-modal" id="galleryModal" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+    <div class="alpha-gallery-backdrop"></div>
+    <div class="alpha-gallery-dialog">
+      <button type="button" class="alpha-gallery-modal-close" aria-label="Fechar foto ampliada">&times;</button>
+      <button type="button" class="alpha-gallery-nav prev" aria-label="Foto anterior"><i class="fa-solid fa-chevron-left"></i></button>
+      <button type="button" class="alpha-gallery-nav next" aria-label="Próxima foto"><i class="fa-solid fa-chevron-right"></i></button>
+      <div class="alpha-gallery-stage">
+        <img src="" alt="" class="alpha-gallery-full-img" id="galleryModalImg">
+      </div>
+      <div class="alpha-gallery-info">
+        <h3 id="galleryModalTitle" class="alpha-gallery-modal-title"></h3>
+        <p id="galleryModalDesc" class="alpha-gallery-modal-desc"></p>
+        <span id="galleryModalCounter" class="alpha-gallery-counter"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Galeria Section -->
+
   <!-- Start CTA Section -->
 
   <section class="alpha-cta">
@@ -642,6 +1009,7 @@
             <li><a href="#sobre-nos">Sobre</a></li>
             <li><a href="#modalidades">Modalidades</a></li>
             <li><a href="#planos">Planos</a></li>
+            <li><a href="#galeria">Galeria</a></li>
             <li><a href="login.html">Entrar</a></li>
           </ul>
         </div>

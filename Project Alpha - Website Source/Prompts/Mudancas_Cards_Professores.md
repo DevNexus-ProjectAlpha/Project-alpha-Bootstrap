@@ -1,0 +1,2 @@
+## Na Página Index na Seção de Professores
+Nos cards dos professores implemente um modal embaixo do professor que ao clicar no professor esse modal apareca em baixo com informações adicionais do professor. Ao clicar novamente no professor esse modal fechara
