@@ -23,6 +23,8 @@
   --alpha-red-hover: #A50F1A;
   --alpha-red-glow: #FD0013;      /* destaque do H2 do hero */
   --alpha-red-soft: #B61E1E;      /* fundo dos cards de estatística */
+  --alpha-green: #1EBE5A;
+  --alpha-green-hover: #169B4A;
   --alpha-white: #FFFFFF;
   --alpha-black: #000000;
 
@@ -69,6 +71,8 @@
 :root {
   --bs-primary: var(--alpha-red);
   --bs-primary-rgb: 193, 18, 31;
+  --bs-success: var(--alpha-green);
+  --bs-success-rgb: 30, 190, 90;
   --bs-link-color: var(--alpha-white);
   --bs-link-color-rgb: 255, 255, 255;
   --bs-link-hover-color: var(--alpha-red);
@@ -160,18 +164,51 @@ p { line-height: 1.75; }
 
 /* 5. COMPONENTES GLOBAIS --------------------------------------------------- */
 /* Botão primário — via variáveis do componente, sem !important */
-.btn-primary {
-  --bs-btn-bg: var(--alpha-red);
-  --bs-btn-border-color: var(--alpha-red);
+.btn.btn-btn-success,
+.btn.btn-btn-success:hover,
+.btn.btn-btn-success:focus,
+.btn.btn-btn-success:active,
+.btn.btn-btn-success:not(:disabled):not(.disabled):active {
+  background-color: #1ebe5a !important;
+  border-color: #1ebe5a !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 13px;
+  padding: 0.375rem 0.75rem;
+  width: 100px;
+  font-weight: 400;
+  line-height: 1.5;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn.btn-btn-success:hover,
+.btn.btn-btn-success:focus,
+.btn.btn-btn-success:active,
+.btn.btn-btn-success:not(:disabled):not(.disabled):active {
+  background-color: #169b4a !important;
+  border-color: #169b4a !important;
+  color: #ffffff !important;
+}
+
+.btn-primary,
+.btn-success {
+  --bs-btn-bg: var(--alpha-green);
+  --bs-btn-border-color: var(--alpha-green);
   --bs-btn-color: var(--alpha-white);
-  --bs-btn-hover-bg: var(--alpha-red-hover);
-  --bs-btn-hover-border-color: var(--alpha-red-hover);
+  --bs-btn-hover-bg: var(--alpha-green-hover);
+  --bs-btn-hover-border-color: var(--alpha-green-hover);
   --bs-btn-hover-color: var(--alpha-white);
-  --bs-btn-active-bg: var(--alpha-red-hover);
-  --bs-btn-active-border-color: var(--alpha-red-hover);
-  --bs-btn-focus-shadow-rgb: 193, 18, 31;
+  --bs-btn-active-bg: var(--alpha-green-hover);
+  --bs-btn-active-border-color: var(--alpha-green-hover);
+  --bs-btn-focus-shadow-rgb: 30, 190, 90;
   font-weight: 700;
   border-radius: var(--alpha-radius-md);
+  background-color: var(--alpha-green) !important;
+  border-color: var(--alpha-green) !important;
+  color: var(--alpha-white) !important;
+  box-shadow: none !important;
 }
 
 .btn-outline-light {
@@ -436,6 +473,35 @@ body,
 }
 
 @media (max-width: 767.98px) {
+  .hero-section .hero-content {
+    position: relative;
+    min-height: 620px;
+    box-sizing: border-box;
+    background-position: right center;
+    background-size: cover;
+  }
+
+  .hero-section .hero-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.7) 48%, rgba(0, 0, 0, 0.2) 100%);
+  }
+
+  .hero-section .hero-content > .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-section .hero-slide-mobile {
+    background-image: url('../images/hero-mobile.jpg') !important;
+  }
+
+  .hero-section .hero-slide-work4 {
+    background-image: url('../images/work-4.png') !important;
+  }
+
   .hero-section .hero-content .heading {
     max-width: 100%;
     font-size: clamp(2.4rem, 11vw, 3.4rem) !important;
@@ -727,6 +793,67 @@ body,
 .alpha-access {
   padding: 120px 0;
   background-color: var(--alpha-bg);
+}
+
+.alpha-teachers {
+  padding: 110px 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(193, 18, 31, 0.04));
+}
+
+.alpha-teachers-grid {
+  margin-top: 28px;
+  justify-content: center;
+}
+
+.alpha-teacher-card {
+  height: 100%;
+  padding: 18px 14px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--alpha-line);
+  border-radius: 20px;
+  text-align: center;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.alpha-teacher-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(193, 18, 31, 0.6);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.alpha-teacher-photo {
+  width: 148px;
+  height: 148px;
+  margin: 0 auto 16px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.18);
+  background: #111111;
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.24);
+}
+
+.alpha-teacher-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.alpha-teacher-card h3 {
+  margin: 0;
+  font-size: clamp(1.2rem, 1.7vw, 1.5rem);
+  letter-spacing: 0.02em;
+  color: var(--alpha-white);
+}
+
+.alpha-teacher-card p {
+  margin: 8px 0 0;
+  color: var(--alpha-text-soft);
+  font-size: 0.85rem;
 }
 
 .alpha-title {

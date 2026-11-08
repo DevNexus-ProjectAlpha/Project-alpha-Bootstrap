@@ -43,6 +43,8 @@
     <link rel="stylesheet" type="text/css" href="assets/css/custom-home.css">
 
     <style>
+        a { text-decoration: none; } 
+        .main-menu { height: 108px; }
         /* Correção Menu Mobile */
         .mobile-menu {
             position: sticky !important;
@@ -93,6 +95,27 @@
             color: #cccccc;
             margin-bottom: 10px;
         }
+
+        .card,
+        .form-control,
+        .form-select,
+        textarea.form-control {
+            background-color: #111111 !important;
+            color: #ffffff !important;
+            border-color: rgba(255,255,255,0.18) !important;
+        }
+
+        .form-control::placeholder,
+        .form-select::placeholder,
+        textarea.form-control::placeholder {
+            color: rgba(255,255,255,0.55) !important;
+        }
+
+        .form-label,
+        .card-header .h1,
+        .card-header p {
+            color: #ffffff !important;
+        }
     </style>
 </head>
 <body>
@@ -114,10 +137,10 @@
                     </div>
                     <div class="separator"></div>
                     <div class="social">
-                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="index.html#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="index.html#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="index.html#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="index.html#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
@@ -131,16 +154,15 @@
                     <ul>
                         <li><a href="index.html">Início</a></li>
                         <li class="dropdown">
-                            <a href="#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
+                            <a href="index.html#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
                             <ul class="sub-menu">
-                                <li><a href="#sobre-nos">Nossa história</a></li>
-                                <li><a href="#ergonomia">Ergonomia e acessibilidade</a></li>
-                                <li><a href="sobre.html">Página completa</a></li>
+                                <li><a href="index.html#sobre-nos">Nossa história</a></li>
+                                <li><a href="index.html#ergonomia">Ergonomia e acessibilidade</a></li>
+                                <li><a href="index.html#especialistas">Especialistas</a></li>
                             </ul>
                         </li>
-                        <li><a href="#modalidades">Modalidades</a></li>
-                        <li><a href="#planos">Planos</a></li>
-                        <li><a href="loja.html">Loja</a></li>
+                        <li><a href="index.html#modalidades">Modalidades</a></li>
+                        <li><a href="index.html#planos">Planos</a></li>
                         <li><a href="login.html">Entrar</a></li>
                     </ul>
                 </div>
@@ -167,16 +189,15 @@
                 <ul>
                     <li><a href="index.html">Início</a></li>
                     <li class="mobail-dropdown">
-                        <a href="#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
+                        <a href="index.html#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
                         <ul class="mobail-submenu">
-                            <li><a href="#sobre-nos">Nossa história</a></li>
-                            <li><a href="#ergonomia">Ergonomia e acessibilidade</a></li>
-                            <li><a href="sobre.html">Página completa</a></li>
+                            <li><a href="index.html#sobre-nos">Nossa história</a></li>
+                            <li><a href="index.html#ergonomia">Ergonomia e acessibilidade</a></li>
+                            <li><a href="index.html#especialistas">Especialistas</a></li>
                         </ul>
                     </li>
-                    <li><a href="#modalidades">Modalidades</a></li>
-                    <li><a href="#planos">Planos</a></li>
-                    <li><a href="loja.html">Loja</a></li>
+                    <li><a href="index.html#modalidades">Modalidades</a></li>
+                    <li><a href="index.html#planos">Planos</a></li>
                     <li><a href="login.html">Entrar</a></li>
                 </ul>
             </div>
@@ -196,11 +217,8 @@
                 </div>
             </div>
             <div class="component">
-                <div class="search-icon">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
                 <div class="button">
-                    <a href="cadastro.html" target="_blank" rel="noopener" class="btn">Matricule-se<i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="cadastro.html" rel="noopener" class="btn">Matricule-se<i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -208,35 +226,39 @@
 
     <main class="container d-flex flex-column align-items-center mt-4">
         <div class="col-lg-6 mt-5">
-            <div class="card mb-4 bg-light text-dark border-top border-danger border-3">
-                <div class="card-header">
-                    <div class="h1 text-dark mb-2">FAZER LOGIN</div>
-                    <p class="h5 text-muted">Entre com seus dados para acessar a plataforma da academia e navegar pelos serviços disponíveis.</p>
+            <div class="card mb-4 bg-dark text-white border-top border-danger border-3">
+                <div class="card-header bg-dark border-0">
+                    <div class="h1 text-white mb-2">FAZER LOGIN</div>
+                    <p class="h5 text-light">Entre com seus dados para acessar a plataforma da academia e navegar pelos serviços disponíveis.</p>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form id="loginForm">
                         <div class="mb-3 col-md-12">
-                            <label class="form-label" for="genero">Entrar como<span class="required-indicator sr-only"> (required)</span></label>
-                            <select class="form-select bg-white text-dark border border-dark" id="genero" required="">
-                                <option value="masculino" selected>Aluno</option>
-                                <option value="feminino">Personal Trainer</option>
-                                <option value="outro">Administrador</option>
+                            <label class="form-label" for="genero">Entrar como <span class="text-danger" aria-label="obrigatório">*</span></label>
+                            <select class="form-select bg-dark text-white border border-secondary" id="genero" required="">
+                                <option value="" selected disabled>Selecione o perfil</option>
+                                <option value="aluno">Aluno</option>
+                                <option value="personal">Personal Trainer</option>
+                                <option value="admin">Administrador</option>
                             </select>
                         </div>
 
                         <div class="mb-3 col-md-12">
-                            <label class="form-label" for="email">E-mail<span class="required-indicator sr-only"> (required)</span></label>
-                            <input type="email" class="form-control bg-white text-dark border border-dark" id="email" required="">
+                            <label class="form-label" for="email">E-mail <span class="text-danger" aria-label="obrigatório">*</span></label>
+                            <input type="email" class="form-control bg-dark text-white border border-secondary" id="email" placeholder="seuemail@exemplo.com" required="">
                         </div>
 
                         <div class="mb-3 col-md-12">
-                            <label class="form-label" for="senha">Senha<span class="required-indicator sr-only"> (required)</span></label>
-                            <input type="password" class="form-control bg-white text-dark border border-dark" id="senha" required="">
+                            <label class="form-label" for="senha">Senha <span class="text-danger" aria-label="obrigatório">*</span></label>
+                            <input type="password" class="form-control bg-dark text-white border border-secondary" id="senha" placeholder="Digite sua senha" required="">
+                            <div class="mt-2 text-end">
+                                <a href="#" class="text-danger text-decoration-none fw-semibold">Esqueci minha senha</a>
+                            </div>
                         </div>
 
                         <hr>
 
-                        <button class="btn btn-success" type="submit">Entrar</button>
+                        <button class="btn btn-btn-success" type="submit">Entrar</button>
                         <button class="btn btn-danger" type="reset">Cancelar</button>
                     </form>
                 </div>
@@ -248,10 +270,33 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
-        document.querySelectorAll('.mobile-menu a[href^="#"]').forEach(function (link) {
+        document.querySelectorAll('.mobile-menu a[href^="index.html#"]').forEach(function (link) {
             link.addEventListener('click', function () {
                 var content = document.querySelector('.mobile-menu .menu-content');
                 if (content) { content.style.display = 'none'; }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.getElementById('loginForm');
+            const perfilSelect = document.getElementById('genero');
+
+            if (!loginForm || !perfilSelect) return;
+
+            loginForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                if (perfilSelect.value === 'admin' || perfilSelect.value === 'personal') {
+                    window.location.href = 'dashboard.html';
+                    return;
+                }
+
+                if (perfilSelect.value === 'aluno') {
+                    window.location.href = 'aluno.html';
+                    return;
+                }
+
+                loginForm.submit();
             });
         });
     </script>

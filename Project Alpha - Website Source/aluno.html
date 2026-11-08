@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Alpha | Academia</title>
+
+    <meta name="description" content="Transforme sua performance com a Project Alpha. Academia moderna focada em saúde, bem-estar, suplementação e resultados reais.">
+    <meta property="og:title" content="Project Alpha - Academia">
+    <meta property="og:description" content="Academia moderna focada em performance, bem-estar, suplementação e resultados reais.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.projectalpha.com.br/">
+
+    <link rel="icon" type="image/png" href="assets/images/Faviicon-alpha.png">
+
+    <!-- Google Fonts — tipografia da marca Project Alpha -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Carousel -->
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.min.css">
+
+    <!-- Venobox -->
+    <link rel="stylesheet" type="text/css" href="assets/css/venobox.min.css">
+
+    <!-- Template base (NÃO EDITAR) -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- Customização da marca — deve ser sempre o último -->
+    <link rel="stylesheet" type="text/css" href="assets/css/custom-home.css">
+  
+    <style>
+      :root {
+        --bg: #060606;
+        --panel: #111315;
+        --panel-2: #1b1d20;
+        --panel-3: #23262a;
+        --line: rgba(255, 255, 255, 0.09);
+        --line-soft: rgba(255, 255, 255, 0.06);
+        --text: #f3f3f3;
+        --muted: rgba(255, 255, 255, 0.7);
+        --muted-2: rgba(255, 255, 255, 0.5);
+        --red: #c1121f;
+        --red-dark: #8d0c17;
+        --red-soft: rgba(193, 18, 31, 0.12);
+        --success: #21c067;
+        --shadow: 0 18px 40px rgba(0, 0, 0, 0.42);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: 'Montserrat', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      .page-shell {
+        max-width: 1360px;
+        margin: 0 auto;
+        padding: 24px 18px 16px;
+        margin-top: 40px;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 2.15fr) minmax(300px, 0.85fr);
+        gap: 22px;
+        margin-top: 28px;
+      }
+
+      .panel {
+        background: rgba(18, 20, 22, 0.98);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .profile-panel {
+        padding: 20px 16px 18px;
+      }
+
+      .panel-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: clamp(1.3rem, 2vw, 2.1rem);
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 0.03em;
+        padding: 0px 8px 0px;
+        margin-bottom: 10px;
+      }
+
+      .panel-header i {
+        color: var(--red);
+        font-size: 1.1rem;
+      }
+
+      .fields-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 20px;
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .field label {
+        color: var(--muted-2);
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      .field-value,
+      .field input,
+      .field select,
+      .field textarea {
+        min-height: 52px;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(255,255,255,0.04);
+        color: var(--text);
+        padding: 12px 14px;
+        font-size: 1rem;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .field textarea {
+        min-height: 90px;
+        resize: vertical;
+      }
+
+      .field-value {
+        display: flex;
+        align-items: center;
+        color: rgba(255,255,255,0.75);
+      }
+
+      .field textarea,
+      .field input,
+      .field select {
+        outline: none;
+      }
+
+      .field textarea:focus,
+      .field input:focus,
+      .field select:focus {
+        border-color: rgba(193,18,31,0.8);
+        box-shadow: 0 0 0 3px rgba(193,18,31,0.16);
+      }
+
+      .observacao {
+        grid-column: 1 / -1;
+      }
+
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 14px;
+        padding-top: 16px;
+      }
+
+      .btn {
+        appearance: none;
+        border: 0;
+        border-radius: 10px;
+        padding: 12px 24px;
+        font-weight: 700;
+        font-size: 0.92rem;
+        cursor: pointer;
+        transition: transform 0.15s ease, filter 0.15s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.04);
+      }
+
+      .btn-secondary {
+        background: rgba(255,255,255,0.05);
+        color: var(--text);
+        border: 1px solid var(--line);
+      }
+
+      .btn-primary {
+        background: linear-gradient(180deg, #1bbf6c, #149c5a);
+        color: #fff;
+        box-shadow: 0 12px 24px rgba(25, 135, 84, 0.28);
+      }
+
+      .card-panel {
+        padding: 18px 18px 16px;
+      }
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: clamp(1.3rem, 2vw, 2.1rem);
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 0.03em;
+        padding: 4px 6px 12px;
+      }
+
+      .card-header i {
+        color: var(--red);
+        font-size: 1rem;
+      }
+
+      .identity-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0 12px;
+      }
+
+      .avatar {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, #f1575d, #d1121d);
+        border: 4px solid rgba(255,255,255,0.08);
+        display: grid;
+        place-items: center;
+        box-shadow: 0 16px 30px rgba(193,18,31,0.26);
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 3.6rem;
+        line-height: 1;
+      }
+
+      .plan-box {
+        text-align: center;
+        padding: 10px 0 18px;
+      }
+
+      .plan-box h3 {
+        margin: 0;
+        font-size: clamp(2rem, 3vw, 2.6rem);
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 0.04em;
+      }
+
+      .plan-box p {
+        margin: 10px 0 0;
+        color: rgba(255,255,255,0.7);
+      }
+
+      .plan-feature {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255,255,255,0.8);
+        font-size: 0.98rem;
+        justify-content: center;
+        margin-bottom: 14px;
+      }
+
+      .plan-feature i {
+        color: var(--success);
+      }
+
+      .detail-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 8px;
+      }
+
+      .detail-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px 12px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--line-soft);
+        border-radius: 10px;
+      }
+
+      .detail-item span {
+        display: block;
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted-2);
+      }
+
+      .detail-item strong {
+        font-size: 0.94rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-top: 26px;
+        padding: 18px 10px 8px;
+        border-top: 1px solid var(--line);
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      .footer-brand .small-mark {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(180deg, rgba(193,18,31,0.18), rgba(193,18,31,0.08));
+        color: var(--red);
+        border: 1px solid rgba(193,18,31,0.22);
+      }
+
+      .footer-brand strong {
+        display: block;
+        font-family: 'Bebas Neue', sans-serif;
+        letter-spacing: 0.03em;
+        font-size: 1.5rem;
+      }
+
+      .footer-brand p {
+        margin: 2px 0 0;
+        color: var(--muted-2);
+        font-size: 0.9rem;
+      }
+
+      .copyright {
+        color: var(--muted-2);
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 980px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .page-shell {
+          margin: 0;
+          padding: 0;
+        }
+
+        .card-panel {
+          order: -1;
+        }
+
+        .profile-panel {
+          order: 1;
+        }
+
+        .topbar {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .nav-links {
+          width: 100%;
+          gap: 12px 20px;
+          order: 3;
+        }
+
+        .fields-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .actions {
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .footer {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .copyright {
+          white-space: normal;
+        }
+      }
+    </style>
+</head>
+<body>
+    <header class="site-header sticky-top">
+        <div class="top-bar">
+        <div class="container">
+            <div class="top-left">
+            <div class="mail">
+                <a href="mailto:contato@projectalpha.com.br"><i class="fa-solid fa-envelope"></i>contato@projectalpha.com.br</a>
+            </div>
+            <div class="location">
+                <i class="fa-solid fa-location-dot"></i>Av. Alpha Performance, 1200 - Presidente Prudente, SP
+            </div>
+            </div>
+            <div class="top-right">
+            <div class="phone">
+                <a href="tel:+551888887777"><i class="fa-solid fa-phone"></i>(18) 88888-7777</a>
+            </div>
+            <div class="separator"></div>
+            <div class="social">
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="container">
+        <div class="menu-bar">
+            <div class="site-logo">
+            <a href="index.html"><img src="assets/images/Logo-nav.png" alt="Project Alpha Academia"></a>
+            </div>
+            <div class="main-menu">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li class="dropdown">
+                <a href="index.html#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="sub-menu">
+                    <li><a href="index.html#sobre-nos">Nossa história</a></li>
+                    <li><a href="index.html#ergonomia">Ergonomia e acessibilidade</a></li>
+                    <li><a href="index.html#profissionais">Profissionais</a></li>
+                </ul>
+                </li>
+                <li><a href="index.html#modalidades">Modalidades</a></li>
+                <li><a href="index.html#planos">Planos</a></li>
+            </ul>
+            </div>
+            <div class="button">
+            <a href="index.html" rel="noopener" class="btn">Sair</a>
+            </div>
+        </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu sticky-top">
+        <div class="menu-bar">
+        <div class="site-logo">
+            <a href="index.html">
+            <img src="assets/images/Logo-nav.png" alt="Project Alpha Academia">
+            </a>
+        </div>
+        <div class="menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        </div>
+        <div class="menu-content">
+        <div class="menu">
+            <ul>
+            <li><a href="index.html">Início</a></li>
+            <li class="mobail-dropdown">
+                <a href="index.html#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
+                <ul class="mobail-submenu">
+                <li><a href="index.html#sobre-nos">Nossa história</a></li>
+                <li><a href="index.html#ergonomia">Ergonomia e acessibilidade</a></li>
+                <li><a href="index.html#profissionais">Profissionais</a></li>
+                </ul>
+            </li>
+            <li><a href="index.html#modalidades">Modalidades</a></li>
+            <li><a href="index.html#planos">Planos</a></li>
+            <li><a href="login.html">Entrar</a></li>
+            </ul>
+        </div>
+        <div class="info">
+            <h3 class="title">Contato</h3>
+            <div class="info-box">
+            <i class="fa-solid fa-location-dot"></i>
+            Av. Alpha Performance, 1200 - Presidente Prudente, SP
+            </div>
+            <div class="info-box">
+            <i class="fa-brands fa-whatsapp"></i>
+            <a href="tel:+5518988885555">(18) 98888-5555</a>
+            </div>
+            <div class="info-box">
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:contato@projectalpha.com.br">contato@projectalpha.com.br</a>
+            </div>
+        </div>
+        <div class="component">
+            <div class="search-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="button">
+            <a href="cadastro.html" rel="noopener" class="btn">Matricule-se<i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="page-shell">
+        <main class="content-grid">
+            <section class="panel profile-panel" aria-labelledby="perfil-title">
+            <div class="panel-header" id="perfil-title">
+                <i class="fa-solid fa-user"></i>
+                <span>Meu Perfil</span>
+            </div>
+
+            <div class="fields-grid">
+                <div class="field">
+                <label for="nome">Nome completo</label>
+                <div class="field-value" id="nome">Gustavo Santos</div>
+                </div>
+
+                <div class="field">
+                <label for="email">E-mail</label>
+                <div class="field-value" id="email">gustavo.santos@example.com</div>
+                </div>
+
+                <div class="field">
+                <label for="telefone">Telefone</label>
+                <div class="field-value" id="telefone">(18) 99999-9999</div>
+                </div>
+
+                <div class="field">
+                <label for="matricula">Matrícula</label>
+                <div class="field-value" id="matricula">PA-2026-0482</div>
+                </div>
+
+                <div class="field">
+                <label for="plano">Plano</label>
+                <div class="field-value" id="plano">Premium</div>
+                </div>
+
+                <div class="field">
+                <label for="objetivo">Objetivo</label>
+                <div class="field-value" id="objetivo">Ganho de Massa</div>
+                </div>
+
+                <div class="field">
+                <label for="nascimento">Data de nascimento</label>
+                <div class="field-value" id="nascimento">18/12/2006</div>
+                </div>
+
+                <div class="field">
+                <label for="endereco">Endereço</label>
+                <div class="field-value" id="endereco">Rua exemplo, 999 - Presidente Prudente, SP</div>
+                </div>
+
+                <div class="field observacao">
+                <label for="observacoes">Observações</label>
+                <div class="field-value" id="observacoes">Prefere treinos no fim da tarde e acompanhamento personalizado aos sábados.</div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-secondary" type="button">Cancelar</button>
+                <button class="btn btn-primary" type="button">Salvar Alterações</button>
+            </div>
+            </section>
+
+            <aside class="panel card-panel" aria-label="Dados do cadastro do aluno">
+            <div class="card-header">
+                <i class="fa-solid fa-id-card"></i>
+                <span>Dados de Cadastro</span>
+            </div>
+
+            <div class="identity-wrap">
+                <div class="avatar">G</div>
+            </div>
+
+            <div class="plan-box">
+                <h3>Plano Premium</h3>
+                <p>Matrícula PA-2026-0482</p>
+            </div>
+
+            <div class="plan-feature">
+                <i class="fa-solid fa-check"></i>
+                <span>Matrícula Ativa</span>
+            </div>
+
+            <div class="detail-list">
+                <div class="detail-item">
+                    <span>Nome</span>
+                    <strong>Gustavo Santos</strong>
+                </div>
+                <div class="detail-item">
+                    <span>E-mail</span>
+                    <strong>gustavo.santos@example.com</strong>
+                </div>
+                <div class="detail-item">
+                    <span>Telefone</span>
+                    <strong>(18) 99999-9999</strong>
+                </div>
+            </div>
+            </aside>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-brand">
+            <div class="small-mark"><i class="fa-solid fa-dumbbell"></i></div>
+            <div>
+                <strong>Project Alpha</strong>
+                <p>Sistema integrado de gestão, acompanhamento físico e e-commerce.</p>
+            </div>
+            </div>
+
+            <div class="copyright">© 2026 Project Alpha • Desenvolvido por DevNexus</div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/venobox.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Navegação por âncora: fecha o menu mobile ao clicar em uma seção -->
+    <script>
+      document.querySelectorAll('.mobile-menu a[href^="#"]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          var content = document.querySelector('.mobile-menu .menu-content');
+          if (content) { content.style.display = 'none'; }
+        });
+      });
+    </script>
+</body>
+</html>
