@@ -247,11 +247,13 @@
                         <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="nome">Nome <span class="text-danger" aria-label="obrigatório">*</span></label>
-                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="nome" placeholder="Digite seu nome completo" required="">
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="nome" placeholder="Digite seu nome completo" onblur="validarTexto(this, 2, 'Por favor, digite seu nome e sobrenome completo.')" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="email">E-mail <span class="text-danger" aria-label="obrigatório">*</span></label>
-                                <input type="email" class="form-control bg-dark text-white border border-secondary" id="email" placeholder="seuemail@exemplo.com" required="">
+                                <input type="email" class="form-control bg-dark text-white border border-secondary" id="email" placeholder="seuemail@exemplo.com" onblur="validarEmail(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
@@ -259,11 +261,13 @@
                         <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="telefone">Telefone <span class="text-danger" aria-label="obrigatório">*</span></label>
-                                <input type="tel" class="form-control bg-dark text-white border border-secondary" id="telefone" placeholder="(99) 99999-9999" required="">
+                                <input type="tel" class="form-control bg-dark text-white border border-secondary" id="telefone" placeholder="(99) 99999-9999" maxlength="15" onkeyup="mascara('(##) #####-####', this, event)" onblur="validarTelefone(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="dataNascimento">Data de Nascimento <span class="text-danger" aria-label="obrigatório">*</span></label>
-                                <input type="date" class="form-control bg-dark text-white border border-secondary" id="dataNascimento" placeholder="dd/mm/aaaa" required="">
+                                <input type="date" class="form-control bg-dark text-white border border-secondary" id="dataNascimento" placeholder="dd/mm/aaaa" onblur="validarData(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
@@ -271,16 +275,18 @@
                         <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="cpf">CPF <span class="text-danger" aria-label="obrigatório">*</span></label>
-                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="cpf" placeholder="000.000.000-00" required="">
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="cpf" placeholder="000.000.000-00" maxlength="14" onkeyup="mascara('###.###.###-##', this, event)" onblur="validarCPF(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="genero">Gênero <span class="text-danger" aria-label="obrigatório">*</span></label>
-                                <select class="form-select bg-dark text-white border border-secondary" id="genero" required="">
-                                    <option value="" disabled selected>Selecione...</option>
+                                <select class="form-select bg-dark text-white border border-secondary" id="genero" onblur="validarPreenchimento(this)" required>
+                                    <option value disabled selected>Selecione...</option>
                                     <option value="masculino">Masculino</option>
                                     <option value="feminino">Feminino</option>
                                     <option value="outro">Outro / Prefiro não dizer</option>
                                 </select>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
@@ -288,47 +294,80 @@
                         <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="estadoCivil">Estado Civil <span class="text-danger" aria-label="obrigatório">*</span></label>
-                                <select class="form-select bg-dark text-white border border-secondary" id="estadoCivil" required="">
-                                    <option value="" disabled selected>Selecione...</option>
+                                <select class="form-select bg-dark text-white border border-secondary" id="estadoCivil" onblur="validarPreenchimento(this)" required>
+                                    <option value disabled selected>Selecione...</option>
                                     <option value="solteiro">Solteiro(a)</option>
                                     <option value="casado">Casado(a)</option>
                                     <option value="divorciado">Divorciado(a)</option>
                                     <option value="viuvo">Viúvo(a)</option>
                                 </select>
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="altura">Altura (m) <span class="text-danger" aria-label="obrigatório">*</span></label>
-                                <input type="number" step="0.01" class="form-control bg-dark text-white border border-secondary" id="altura" placeholder="Ex: 1.75 m" required="">
+                                <input type="number" step="0.01" class="form-control bg-dark text-white border border-secondary" id="altura" placeholder="Ex: 1,75 m" onkeyup="mAltura(this)" onblur="validarAltura(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
                         <!-- Linha 5: Deficiência e Modalidade -->
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="deficiencia">Possui Deficiência?<span class="required-indicator sr-only"> (required)</span></label>
+                                <label class="form-label" for="deficiencia">Possui Deficiência?</label>
                                 <input type="text" class="form-control bg-dark text-white border border-secondary" id="deficiencia" placeholder="Descreva se houver alguma deficiência">
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="modalidade">Modalidade de Interesse<span class="required-indicator sr-only"> (required)</span></label>
+                                <label class="form-label" for="modalidade">Modalidade de Interesse</label>
                                 <select class="form-select bg-dark text-white border border-secondary" id="modalidade">
-                                    <option value="" disabled selected>Selecione...</option>
+                                    <option value disabled selected>Selecione...</option>
                                     <option value="musculacao">Musculação</option>
                                     <option value="crossfit">CrossFit</option>
                                     <option value="natacao">Natação</option>
                                     <option value="lutas">Artes Marciais</option>
                                 </select>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
-                        <!-- Linha 6: Foto e Endereço -->
+                        <!-- Linha 6: Foto e Cidade -->
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="foto">Foto de Perfil<span class="required-indicator sr-only"> (required)</span></label>
+                                <label class="form-label" for="foto">Foto de Perfil</label>
                                 <input type="file" class="form-control bg-dark text-white border border-secondary" id="foto" accept="image/*" placeholder="Selecione uma foto">
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="endereco">Endereço <span class="text-danger" aria-label="obrigatório">*</span></label>
-                                <textarea class="form-control bg-dark text-white border border-secondary" id="endereco" rows="1" placeholder="Rua, número, bairro e cidade" required=""></textarea>
+                                <label class="form-label" for="cidade">Cidade <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="cidade" placeholder="Presidente Prudente" onblur="validarTexto(this, 1, 'Este campo é obrigatório!')" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+                        <!-- Seção de Endereço Detalhado -->
+                        <div class="row">
+                            <h3 class="mt-3">Endereço</h3>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="cep">CEP <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="cep" placeholder="00.000-000" maxlength="10" onkeyup="mascara('##.###-###', this, event)" onblur="validarCEP(this)" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="bairro">Bairro <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="bairro" placeholder="Park Imperial" onblur="validarTexto(this, 1, 'Este campo é obrigatório!')" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="rua">Rua <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="rua" placeholder="Armando Geraldo Imperial" onblur="validarTexto(this, 1, 'Este campo é obrigatório!')" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="numero">Número <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="number" class="form-control bg-dark text-white border border-secondary" id="numero" placeholder="0000" max="9999" min="1" oninput="if (Number(this.value) > 99999) this.value = 99999;" onblur="validarPreenchimento(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
@@ -336,23 +375,29 @@
                         <div class="row">
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="senha">Senha <span class="text-danger" aria-label="obrigatório">*</span></label>
-                                <input type="password" class="form-control bg-dark text-white border border-secondary" id="senha" placeholder="Crie uma senha segura" required="">
+                                <input type="password" class="form-control bg-dark text-white border border-secondary" id="senha" placeholder="Crie uma senha segura" onblur="validarSenha(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="form-label" for="confirmaSenha">Confirmar Senha <span class="text-danger" aria-label="obrigatório">*</span></label>
-                                <input type="password" class="form-control bg-dark text-white border border-secondary" id="confirmaSenha" placeholder="Repita sua senha" required="">
+                                <input type="password" class="form-control bg-dark text-white border border-secondary" id="confirmaSenha" placeholder="Repita sua senha" onblur="validarConfSenha(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
                         <hr>
 
-                        <button class="btn btn-btn-success" type="submit">Salvar</button>
+                        <button class="btn btn-btn-success" onclick="validarFormulario()" type="submit">Salvar</button>
                         <button class="btn btn-danger" type="reset">Cancelar</button>
                     </form>
                 </div>
             </div>
         </div>
     </main>
+
+    <!-- Script Necessário Para os Formulários -->
+    <script src="./assets/js/mask/mask.js"></script>
+    <script src="./assets/js/validation/validate.js"></script>
 
     <!-- Script necessário para o menu mobile -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
