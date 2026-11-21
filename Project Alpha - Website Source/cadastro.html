@@ -43,13 +43,37 @@
     <link rel="stylesheet" type="text/css" href="assets/css/custom-home.css">
 
     <style>
+        a { text-decoration: none; } 
+        .main-menu { height: 108px; }
         /* Correção de Cor Botão de Arquivos do Input File */
         .form-control::file-selector-button {
-            background-color: #e9ecef !important; 
-            color: #000000 !important;     
+            background-color: #C1121F !important; 
+            color: #ffffff !important;     
             border: none !important;
-            border-right: 1px solid #000000 !important; 
+            border-right: 1px solid rgba(255,255,255,0.25) !important; 
             margin-right: 10px;
+        }
+
+        .card,
+        .form-control,
+        .form-select,
+        textarea.form-control {
+            background-color: #111111 !important;
+            color: #ffffff !important;
+            border-color: rgba(255,255,255,0.18) !important;
+        }
+
+        .form-control::placeholder,
+        .form-select::placeholder,
+        textarea.form-control::placeholder {
+            color: rgba(255,255,255,0.55) !important;
+        }
+
+        .form-label,
+        .card-header .h2,
+        .card-header .h1,
+        .card-header p {
+            color: #ffffff !important;
         }
 
         /* Correção Menu Mobile */
@@ -102,6 +126,89 @@
             color: #cccccc;
             margin-bottom: 10px;
         }
+
+        /* ---------- Plano e Matrícula ---------- */
+        .opcao-card, .opcao-chip {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            height: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 14px;
+            background-color: #111111;
+            color: #ffffff;
+            cursor: pointer;
+            transition: border-color .2s, background-color .2s, box-shadow .2s;
+        }
+        .opcao-card:hover, .opcao-chip:hover { border-color: rgba(193,18,31,0.7); }
+        .btn-check:checked + .opcao-card,
+        .btn-check:checked + .opcao-chip {
+            border-color: #C1121F;
+            background-color: rgba(193,18,31,0.14);
+            box-shadow: 0 0 0 1px #C1121F inset;
+        }
+        .btn-check:focus-visible + .opcao-card,
+        .btn-check:focus-visible + .opcao-chip { box-shadow: 0 0 0 3px rgba(193,18,31,0.45); }
+        .opcao-titulo { font-weight: 700; font-size: 1.05rem; }
+        .opcao-preco { color: #ff4d5a; font-weight: 600; }
+        .opcao-desc { color: rgba(255,255,255,0.6); font-size: .82rem; line-height: 1.35; }
+        .opcao-tag {
+            align-self: flex-start;
+            font-size: .72rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.7);
+        }
+        .opcao-tag.destaque { background: #C1121F; color: #fff; }
+        .marca-alpha { opacity: .25; transition: opacity .2s; }
+        .btn-check:checked + .opcao-card .marca-alpha { opacity: 1; color: #ff4d5a; }
+        .opcao-chip { flex-direction: row; align-items: center; font-size: .9rem; padding: 10px 12px; }
+        .opcao-chip i { opacity: 0; transition: opacity .2s; color: #ff4d5a; }
+        .btn-check:checked + .opcao-chip i { opacity: 1; }
+        .btn-check:disabled + .opcao-chip { opacity: .4; cursor: not-allowed; }
+
+        /* grupo de opções com erro (mesmo vermelho do Invalid Input do Bootstrap) */
+        .grupo-opcoes.is-invalid .opcao-card,
+        .grupo-opcoes.is-invalid .opcao-chip { border-color: var(--bs-form-invalid-border-color, #dc3545); }
+        .grupo-opcoes.is-invalid ~ .invalid-feedback { display: block; }
+
+        .resumo-plano {
+            border: 1px dashed rgba(255,255,255,0.25);
+            border-radius: 14px;
+            padding: 16px 18px;
+            background: rgba(255,255,255,0.02);
+        }
+        .resumo-plano .linha { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; }
+        .resumo-plano .linha span:first-child { color: rgba(255,255,255,0.65); }
+        .resumo-plano .total { border-top: 1px solid rgba(255,255,255,0.15); margin-top: 6px; padding-top: 10px; font-size: 1.15rem; font-weight: 700; }
+        .resumo-plano .total span:last-child { color: #ff4d5a; }
+        .resumo-plano .desconto span:last-child { color: #4ade80; }
+
+        /* o botão verde do tema tem largura fixa de 100px; aqui os textos são maiores */
+        /* !important porque o tema repete width: 100px nos estados hover/active; sem isso o botão
+           encolhe ao ser pressionado e o clique cai no botão ao lado */
+        .btn.btn-btn-success { width: auto !important; padding: 0.45rem 1rem !important; white-space: nowrap; }
+        .btn.btn-danger { white-space: nowrap; }
+
+        /* o menu do site usa z-index 9999: o modal precisa ficar acima dele */
+        #modalPagamento { z-index: 10060; }
+        .modal-backdrop { z-index: 10050; }
+
+        /* ---------- Modal de pagamento ---------- */
+        #modalPagamento .modal-content { background-color: #151515; color: #fff; border: 1px solid rgba(255,255,255,0.12); }
+        #modalPagamento .modal-header, #modalPagamento .modal-footer { border-color: rgba(255,255,255,0.12); }
+        #modalPagamento .btn-close { filter: invert(1); }
+        #modalPagamento .pix-box {
+            display: flex; align-items: center; gap: 16px;
+            border: 1px solid rgba(255,255,255,0.15); border-radius: 14px; padding: 14px;
+        }
+        #modalPagamento .pix-box .qr { font-size: 4.5rem; line-height: 1; color: #fff; }
+        #modalPagamento .codigo-pix { font-family: monospace; font-size: .78rem; word-break: break-all; color: rgba(255,255,255,0.75); }
+        #modalPagamento .sucesso-icone { font-size: 3.5rem; color: #4ade80; }
+        #modalPagamento .aviso-demo { font-size: .78rem; color: rgba(255,255,255,0.55); }
     </style>
 </head>
 <body>
@@ -140,14 +247,15 @@
                     <ul>
                         <li><a href="index.html">Início</a></li>
                         <li class="dropdown">
-                            <a href="#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
+                            <a href="index.html#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
                             <ul class="sub-menu">
-                                <li><a href="#sobre-nos">Nossa história</a></li>
-                                <li><a href="#ergonomia">Ergonomia e acessibilidade</a></li>
+                                <li><a href="index.html#sobre-nos">Nossa história</a></li>
+                                <li><a href="index.html#ergonomia">Ergonomia e acessibilidade</a></li>
+                                <li><a href="index.html#especialistas">Especialistas</a></li>
                             </ul>
                         </li>
-                        <li><a href="#modalidades">Modalidades</a></li>
-                        <li><a href="#planos">Planos</a></li>
+                        <li><a href="index.html#modalidades">Modalidades</a></li>
+                        <li><a href="index.html#planos">Planos</a></li>
                         <li><a href="login.html">Entrar</a></li>
                     </ul>
                 </div>
@@ -174,16 +282,15 @@
                 <ul>
                     <li><a href="index.html">Início</a></li>
                     <li class="mobail-dropdown">
-                        <a href="#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
+                        <a href="index.html#sobre-nos">Sobre<i class="fa-solid fa-chevron-down"></i></a>
                         <ul class="mobail-submenu">
-                            <li><a href="#sobre-nos">Nossa história</a></li>
-                            <li><a href="#ergonomia">Ergonomia e acessibilidade</a></li>
-                            <li><a href="sobre.html">Página completa</a></li>
+                            <li><a href="index.html#sobre-nos">Nossa história</a></li>
+                            <li><a href="index.html#ergonomia">Ergonomia e acessibilidade</a></li>
+                            <li><a href="index.html#especialistas">Especialistas</a></li>
                         </ul>
                     </li>
-                    <li><a href="#modalidades">Modalidades</a></li>
-                    <li><a href="#planos">Planos</a></li>
-                    <li><a href="loja.html">Loja</a></li>
+                    <li><a href="index.html#modalidades">Modalidades</a></li>
+                    <li><a href="index.html#planos">Planos</a></li>
                     <li><a href="login.html">Entrar</a></li>
                 </ul>
             </div>
@@ -203,11 +310,8 @@
                 </div>
             </div>
             <div class="component">
-                <div class="search-icon">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
                 <div class="button">
-                    <a href="cadastro.html" target="_blank" rel="noopener" class="btn">Matricule-se<i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="cadastro.html" rel="noopener" class="btn">Matricule-se<i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -216,116 +320,334 @@
     <!-- Conteudo -->
     <main class="container d-flex flex-column align-items-center mt-4">
         <div class="col-lg-12 mt-5">
-            <div class="card mb-4 bg-light text-dark border-top border-danger border-3">
-                <div class="card-header">
-                    <div class="h2 text-dark mb-0">Cadastre-se agora!</div>
+            <div class="card mb-4 bg-dark text-white border-top border-danger border-3">
+                <div class="card-header bg-dark border-0">
+                    <div class="h2 text-white mb-0">Cadastre-se agora!</div>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form id="formCadastro" novalidate>
                         <!-- Linha 1: Nome e E-mail -->
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="nome">Nome<span class="required-indicator sr-only"> (required)</span></label>
-                                <input type="text" class="form-control bg-white text-dark border border-dark" id="nome" required="">
+                                <label class="form-label" for="nome">Nome <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="nome" placeholder="Digite seu nome completo" onblur="validarTexto(this, 2, 'Por favor, digite seu nome e sobrenome completo.')" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="email">E-mail<span class="required-indicator sr-only"> (required)</span></label>
-                                <input type="email" class="form-control bg-white text-dark border border-dark" id="email" required="">
+                                <label class="form-label" for="email">E-mail <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="email" class="form-control bg-dark text-white border border-secondary" id="email" placeholder="seuemail@exemplo.com" onblur="validarEmail(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
                         <!-- Linha 2: Telefone e Data de Nascimento -->
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="telefone">Telefone<span class="required-indicator sr-only"> (required)</span></label>
-                                <input type="tel" class="form-control bg-white text-dark border border-dark" id="telefone" required="">
+                                <label class="form-label" for="telefone">Telefone <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="tel" class="form-control bg-dark text-white border border-secondary" id="telefone" placeholder="(99) 99999-9999" maxlength="15" onkeyup="mascara('(##) #####-####', this, event)" onblur="validarTelefone(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="dataNascimento">Data de Nascimento<span class="required-indicator sr-only"> (required)</span></label>
-                                <input type="date" class="form-control bg-white text-dark border border-dark" id="dataNascimento" required="">
+                                <label class="form-label" for="dataNascimento">Data de Nascimento <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="date" class="form-control bg-dark text-white border border-secondary" id="dataNascimento" placeholder="dd/mm/aaaa" onblur="validarData(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
                         <!-- Linha 3: CPF e Gênero -->
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="cpf">CPF<span class="required-indicator sr-only"> (required)</span></label>
-                                <input type="text" class="form-control bg-white text-dark border border-dark" id="cpf" required="">
+                                <label class="form-label" for="cpf">CPF <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="cpf" placeholder="000.000.000-00" maxlength="14" onkeyup="mascara('###.###.###-##', this, event)" onblur="validarCPF(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="genero">Gênero<span class="required-indicator sr-only"> (required)</span></label>
-                                <select class="form-select bg-white text-dark border border-dark" id="genero" required="">
-                                    <option value="" disabled selected>Selecione...</option>
+                                <label class="form-label" for="genero">Gênero <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <select class="form-select bg-dark text-white border border-secondary" id="genero" onblur="validarPreenchimento(this)" required>
+                                    <option value disabled selected>Selecione...</option>
                                     <option value="masculino">Masculino</option>
                                     <option value="feminino">Feminino</option>
                                     <option value="outro">Outro / Prefiro não dizer</option>
                                 </select>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
                         <!-- Linha 4: Estado Civil e Altura -->
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="estadoCivil">Estado Civil<span class="required-indicator sr-only"> (required)</span></label>
-                                <select class="form-select bg-white text-dark border border-dark" id="estadoCivil" required="">
-                                    <option value="" disabled selected>Selecione...</option>
+                                <label class="form-label" for="estadoCivil">Estado Civil <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <select class="form-select bg-dark text-white border border-secondary" id="estadoCivil" onblur="validarPreenchimento(this)" required>
+                                    <option value disabled selected>Selecione...</option>
                                     <option value="solteiro">Solteiro(a)</option>
                                     <option value="casado">Casado(a)</option>
                                     <option value="divorciado">Divorciado(a)</option>
                                     <option value="viuvo">Viúvo(a)</option>
                                 </select>
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="altura">Altura (m)<span class="required-indicator sr-only"> (required)</span></label>
-                                <input type="number" step="0.01" class="form-control bg-white text-dark border border-dark" id="altura" placeholder="Ex: 1.75" required="">
-                            </div>
-                        </div>
-
-                        <!-- Linha 5: Deficiência e Modalidade -->
-                        <div class="row">
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label" for="deficiencia">Possui Deficiência?<span class="required-indicator sr-only"> (required)</span></label>
-                                <input type="text" class="form-control bg-white text-dark border border-dark" id="deficiencia" placeholder="Qual? (Deixe em branco se não)">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                                <label class="form-label" for="modalidade">Modalidade de Interesse<span class="required-indicator sr-only"> (required)</span></label>
-                                <select class="form-select bg-white text-dark border border-dark" id="modalidade" required="">
-                                    <option value="" disabled selected>Selecione...</option>
-                                    <option value="musculacao">Musculação</option>
-                                    <option value="crossfit">CrossFit</option>
-                                    <option value="natacao">Natação</option>
-                                    <option value="lutas">Artes Marciais</option>
-                                </select>
+                                <label class="form-label" for="altura">Altura (m) <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="number" step="0.01" class="form-control bg-dark text-white border border-secondary" id="altura" placeholder="Ex: 1,75 m" onkeyup="mAltura(this)" onblur="validarAltura(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
-                        <!-- Linha 6: Foto e Endereço -->
+                        <!-- Linha 5: Deficiência -->
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label class="form-label" for="deficiencia">Possui Deficiência?</label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="deficiencia" placeholder="Descreva se houver alguma deficiência">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+                        <!-- Linha 6: Foto e Cidade -->
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="foto">Foto de Perfil<span class="required-indicator sr-only"> (required)</span></label>
-                                <input type="file" class="form-control bg-white text-dark border border-dark" id="foto" accept="image/*" required="">
+                                <label class="form-label" for="foto">Foto de Perfil</label>
+                                <input type="file" class="form-control bg-dark text-white border border-secondary" id="foto" accept="image/*" placeholder="Selecione uma foto">
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="endereco">Endereço<span class="required-indicator sr-only"> (required)</span></label>
-                                <textarea class="form-control bg-white text-dark border border-dark" id="endereco" rows="1" required=""></textarea>
+                                <label class="form-label" for="cidade">Cidade <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="cidade" placeholder="Presidente Prudente" onblur="validarTexto(this, 1, 'Este campo é obrigatório!')" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+                        <!-- Seção de Endereço Detalhado -->
+                        <div class="row">
+                            <h3 class="mt-3">Endereço</h3>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="cep">CEP <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="cep" placeholder="00000-000" maxlength="9" inputmode="numeric" onkeyup="mascara('#####-###', this, event)" onblur="validarCEP(this)" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="bairro">Bairro <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="bairro" placeholder="Park Imperial" onblur="validarTexto(this, 1, 'Este campo é obrigatório!')" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="rua">Rua <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="rua" placeholder="Armando Geraldo Imperial" onblur="validarTexto(this, 1, 'Este campo é obrigatório!')" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="numero">Número <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="number" class="form-control bg-dark text-white border border-secondary" id="numero" placeholder="0000" max="9999" min="1" oninput="if (Number(this.value) > 99999) this.value = 99999;" onblur="validarPreenchimento(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
                         <!-- Linha 7: Senha e Confirmação -->
                         <div class="row">
+                            <h3 class="mt-3">Acesso</h3>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="senha">Senha<span class="required-indicator sr-only"> (required)</span></label>
-                                <input type="password" class="form-control bg-white text-dark border border-dark" id="senha" required="">
+                                <label class="form-label" for="senha">Senha <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="password" class="form-control bg-dark text-white border border-secondary" id="senha" placeholder="Crie uma senha segura" onblur="validarSenha(this)" required>
+                                <div class="invalid-feedback"></div>
                             </div>
                             <div class="mb-3 col-md-6">
-                                <label class="form-label" for="confirmaSenha">Confirmar Senha<span class="required-indicator sr-only"> (required)</span></label>
-                                <input type="password" class="form-control bg-white text-dark border border-dark" id="confirmaSenha" required="">
+                                <label class="form-label" for="confirmaSenha">Confirmar Senha <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="password" class="form-control bg-dark text-white border border-secondary" id="confirmaSenha" placeholder="Repita sua senha" onblur="validarConfSenha(this)" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+
+                        <!-- Plano e Matrícula: pacotes, períodos e valores conforme o Anexo I do ERS -->
+                        <div class="row" id="plano">
+                            <h3 class="mt-3">Plano e Matrícula</h3>
+                            <p class="text-white-50 small mb-3">
+                                Todos os pacotes incluem musculação; eles se diferenciam pelos benefícios. Aulas com professor podem ser adicionadas, e quanto maior o período, maior o desconto.
+                            </p>
+
+                            <div class="mb-1"><span class="form-label d-block">Pacote <span class="text-danger" aria-label="obrigatório">*</span></span></div>
+                            <div class="col-12 mb-3">
+                                <div class="row g-2 grupo-opcoes" id="grupo-pacote">
+                            <div class="col-6 col-lg-3">
+                                <input type="radio" class="btn-check" name="pacote" id="pacote-start" value="start" autocomplete="off">
+                                <label class="opcao-card" for="pacote-start">
+                                    <span class="opcao-titulo">Start</span>
+                                    <span class="opcao-preco">R$ 129,90/mês</span>
+                                    <span class="opcao-desc">Musculação + avaliação física<br>e acompanhamento do instrutor</span>
+                                </label>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <input type="radio" class="btn-check" name="pacote" id="pacote-fit" value="fit" autocomplete="off">
+                                <label class="opcao-card" for="pacote-fit">
+                                    <span class="opcao-titulo">Fit</span>
+                                    <span class="opcao-preco">R$ 159,80/mês</span>
+                                    <span class="opcao-desc">Tudo do Start<br>+ Treino personalizado</span>
+                                </label>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <input type="radio" class="btn-check" name="pacote" id="pacote-performance" value="performance" autocomplete="off">
+                                <label class="opcao-card" for="pacote-performance">
+                                    <span class="opcao-titulo">Performance</span>
+                                    <span class="opcao-preco">R$ 189,80/mês</span>
+                                    <span class="opcao-desc">Tudo do Fit<br>+ Reavaliação, desconto na loja e Alpha Pass</span>
+                                </label>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <input type="radio" class="btn-check" name="pacote" id="pacote-full" value="full" autocomplete="off">
+                                <label class="opcao-card" for="pacote-full">
+                                    <span class="opcao-titulo">Full</span>
+                                    <span class="opcao-preco">R$ 219,80/mês</span>
+                                    <span class="opcao-desc">Tudo do Performance<br>+ Nutricionista e fisioterapeuta parceiros</span>
+                                </label>
+                            </div>
+                                </div>
+                                <div class="invalid-feedback" id="fb-pacote"></div>
+                            </div>
+
+                            <!-- Musculação inclusa em todos os pacotes; aulas com professor são adicionais -->
+                            <div class="col-12 mb-3" id="boxAulas">
+                                <div class="opcao-card flex-row align-items-center gap-3 mb-3" style="cursor:default; height:auto">
+                                    <i class="fa-solid fa-dumbbell fs-3 text-danger"></i>
+                                    <span class="d-flex flex-column">
+                                        <span class="opcao-titulo">Musculação inclusa <span class="badge bg-success ms-1">Em todos os pacotes</span></span>
+                                        <span class="opcao-desc">Acesso livre à musculação com acompanhamento do instrutor.</span>
+                                    </span>
+                                </div>
+                                <span class="form-label d-block">
+                                    Aulas adicionais <small class="text-white-50 ms-1">(opcional — com professor, valores por mês)</small>
+                                </span>
+                                <div class="row g-2 grupo-opcoes" id="grupo-aulas">
+                                    <div class="col-6 col-md-4">
+                                        <input type="checkbox" class="btn-check" name="aulas" id="aula-funcional" value="funcional" autocomplete="off">
+                                        <label class="opcao-chip justify-content-between" for="aula-funcional">
+                                            <span><i class="fa-solid fa-check me-1"></i>Treinamento Funcional</span>
+                                            <span class="opcao-preco small">+ R$ 49,90</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <input type="checkbox" class="btn-check" name="aulas" id="aula-spinning" value="spinning" autocomplete="off">
+                                        <label class="opcao-chip justify-content-between" for="aula-spinning">
+                                            <span><i class="fa-solid fa-check me-1"></i>Spinning</span>
+                                            <span class="opcao-preco small">+ R$ 49,90</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <input type="checkbox" class="btn-check" name="aulas" id="aula-danca" value="danca" autocomplete="off">
+                                        <label class="opcao-chip justify-content-between" for="aula-danca">
+                                            <span><i class="fa-solid fa-check me-1"></i>Ritmos e Dança</span>
+                                            <span class="opcao-preco small">+ R$ 49,90</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <input type="checkbox" class="btn-check" name="aulas" id="aula-yoga" value="yoga" autocomplete="off">
+                                        <label class="opcao-chip justify-content-between" for="aula-yoga">
+                                            <span><i class="fa-solid fa-check me-1"></i>Yoga</span>
+                                            <span class="opcao-preco small">+ R$ 59,90</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <input type="checkbox" class="btn-check" name="aulas" id="aula-crossfit" value="crossfit" autocomplete="off">
+                                        <label class="opcao-chip justify-content-between" for="aula-crossfit">
+                                            <span><i class="fa-solid fa-check me-1"></i>CrossFit</span>
+                                            <span class="opcao-preco small">+ R$ 79,90</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-6 col-md-4">
+                                        <input type="checkbox" class="btn-check" name="aulas" id="aula-pilates" value="pilates" autocomplete="off">
+                                        <label class="opcao-chip justify-content-between" for="aula-pilates">
+                                            <span><i class="fa-solid fa-check me-1"></i>Pilates</span>
+                                            <span class="opcao-preco small">+ R$ 89,90</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="small text-white-50 mt-2" id="dicaAulas">
+                                    <i class="fa-solid fa-tags me-1"></i>Leve mais e pague menos: <strong>2 aulas, 10% off</strong> •
+                                    <strong>3 aulas, 15% off</strong> • <strong>4 ou mais, 20% off</strong> no valor das aulas.
+                                </div>
+                            </div>
+
+                            <!-- Alpha Pass: incluso no Performance e no Full; adicional no Start e no Fit -->
+                            <div class="col-12 mb-3 d-none" id="boxAlphaPass">
+                                <input type="checkbox" class="btn-check" id="alphaPass" autocomplete="off">
+                                <label class="opcao-card flex-row align-items-center gap-3" for="alphaPass" id="labelAlphaPass">
+                                    <i class="fa-solid fa-id-card fs-3 text-danger"></i>
+                                    <span class="d-flex flex-column">
+                                        <span class="opcao-titulo">Adicionar Alpha Pass <span class="opcao-preco ms-1">+ R$ 39,90/mês</span></span>
+                                        <span class="opcao-desc">Acesso a outras unidades e academias parceiras.</span>
+                                    </span>
+                                    <i class="fa-solid fa-square-check fs-4 ms-auto marca-alpha"></i>
+                                </label>
+                                <div class="opcao-card flex-row align-items-center gap-3 d-none" id="alphaPassIncluso" style="cursor:default">
+                                    <i class="fa-solid fa-id-card fs-3 text-danger"></i>
+                                    <span class="d-flex flex-column">
+                                        <span class="opcao-titulo">Alpha Pass incluso <span class="badge bg-success ms-1">Grátis no seu pacote</span></span>
+                                        <span class="opcao-desc">Acesso a outras unidades e academias parceiras.</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="mb-1"><span class="form-label d-block">Período de pagamento <span class="text-danger" aria-label="obrigatório">*</span></span></div>
+                            <div class="col-12 mb-3">
+                                <div class="row g-2 grupo-opcoes" id="grupo-periodo">
+                            <div class="col-6 col-lg-3">
+                                <input type="radio" class="btn-check" name="periodo" id="periodo-mensal" value="mensal" autocomplete="off">
+                                <label class="opcao-card" for="periodo-mensal">
+                                    <span class="opcao-titulo">Mensal</span>
+                                    <span class="opcao-preco">1 mês</span>
+                                    <span class="opcao-tag">Sem desconto</span>
+                                </label>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <input type="radio" class="btn-check" name="periodo" id="periodo-trimestral" value="trimestral" autocomplete="off">
+                                <label class="opcao-card" for="periodo-trimestral">
+                                    <span class="opcao-titulo">Trimestral</span>
+                                    <span class="opcao-preco">3 meses</span>
+                                    <span class="opcao-tag destaque">5% OFF</span>
+                                </label>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <input type="radio" class="btn-check" name="periodo" id="periodo-semestral" value="semestral" autocomplete="off">
+                                <label class="opcao-card" for="periodo-semestral">
+                                    <span class="opcao-titulo">Semestral</span>
+                                    <span class="opcao-preco">6 meses</span>
+                                    <span class="opcao-tag destaque">10% OFF</span>
+                                </label>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <input type="radio" class="btn-check" name="periodo" id="periodo-anual" value="anual" autocomplete="off">
+                                <label class="opcao-card" for="periodo-anual">
+                                    <span class="opcao-titulo">Anual</span>
+                                    <span class="opcao-preco">12 meses</span>
+                                    <span class="opcao-tag destaque">15% OFF</span>
+                                </label>
+                            </div>
+                                </div>
+                                <div class="invalid-feedback" id="fb-periodo"></div>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="dataInicio">Data de Início <span class="text-danger" aria-label="obrigatório">*</span></label>
+                                <input type="date" class="form-control bg-dark text-white border border-secondary" id="dataInicio" onchange="validarDataInicio(this); atualizarResumo()" onblur="validarDataInicio(this)" required>
+                                <div class="invalid-feedback"></div>
+                                <div class="form-text text-white-50">A matrícula pode começar hoje ou em até 30 dias.</div>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label" for="dataTermino">Data de Término</label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="dataTermino" placeholder="Calculada automaticamente" readonly tabindex="-1">
+                                <div class="form-text text-white-50">Data de início + quantidade de meses do período.</div>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <div class="resumo-plano" id="resumoPlano"></div>
                             </div>
                         </div>
 
                         <hr>
 
-                        <button class="btn btn-success" type="submit">Salvar</button>
+                        <button class="btn btn-btn-success" onclick="validarFormulario()" type="submit">
+                            Continuar para pagamento <i class="fa-solid fa-arrow-right ms-1"></i>
+                        </button>
                         <button class="btn btn-danger" type="reset">Cancelar</button>
                     </form>
                 </div>
@@ -333,8 +655,123 @@
         </div>
     </main>
 
+    <!-- Pagamento e conclusão da matrícula (assets/js/matricula.js) -->
+    <div class="modal fade" id="modalPagamento" tabindex="-1" aria-labelledby="tituloPagamento" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tituloPagamento"><i class="fa-solid fa-credit-card me-2"></i>Pagamento da Matrícula</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+
+                <!-- Etapa 1: resumo + forma de pagamento -->
+                <div class="modal-body" id="etapaPagamento">
+                    <div class="resumo-plano mb-4" id="resumoPagamento"></div>
+
+                    <span class="form-label d-block mb-2">Forma de pagamento <span class="text-danger">*</span></span>
+                    <div class="row g-2 grupo-opcoes mb-1" id="grupo-forma">
+                        <div class="col-4">
+                            <input type="radio" class="btn-check" name="formaPagamento" id="forma-pix" value="pix" autocomplete="off">
+                            <label class="opcao-card text-center align-items-center" for="forma-pix"><i class="fa-brands fa-pix fs-4"></i><span class="opcao-titulo">Pix</span></label>
+                        </div>
+                        <div class="col-4">
+                            <input type="radio" class="btn-check" name="formaPagamento" id="forma-cartao" value="cartao" autocomplete="off">
+                            <label class="opcao-card text-center align-items-center" for="forma-cartao"><i class="fa-solid fa-credit-card fs-4"></i><span class="opcao-titulo">Cartão</span></label>
+                        </div>
+                        <div class="col-4">
+                            <input type="radio" class="btn-check" name="formaPagamento" id="forma-recepcao" value="recepcao" autocomplete="off">
+                            <label class="opcao-card text-center align-items-center" for="forma-recepcao"><i class="fa-solid fa-store fs-4"></i><span class="opcao-titulo">Na recepção</span></label>
+                        </div>
+                    </div>
+                    <div class="invalid-feedback" id="fb-forma"></div>
+
+                    <!-- Pix -->
+                    <div class="mt-3 d-none" id="boxPix">
+                        <div class="pix-box">
+                            <i class="fa-solid fa-qrcode qr"></i>
+                            <div class="flex-grow-1">
+                                <div class="mb-1">Escaneie o QR Code ou use o código copia e cola:</div>
+                                <div class="codigo-pix mb-2" id="codigoPix"></div>
+                                <button type="button" class="btn btn-sm btn-outline-light" id="btnCopiarPix"><i class="fa-regular fa-copy me-1"></i>Copiar código</button>
+                                <span class="small text-success ms-2 d-none" id="msgCopiado"><i class="fa-solid fa-check me-1"></i>Código copiado!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cartão de crédito -->
+                    <div class="mt-3 d-none" id="boxCartao">
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label class="form-label" for="numeroCartao">Número do cartão <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="numeroCartao" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric" autocomplete="cc-number" onkeyup="mascara('#### #### #### ####', this, event)" onblur="validarNumeroCartao(this)">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label class="form-label" for="nomeCartao">Nome impresso no cartão <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="nomeCartao" placeholder="Como está no cartão" maxlength="40" autocomplete="cc-name" oninput="this.value = this.value.toUpperCase()" onblur="validarNomeCartao(this)">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label class="form-label" for="validadeCartao">Validade <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control bg-dark text-white border border-secondary" id="validadeCartao" placeholder="MM/AA" maxlength="5" inputmode="numeric" autocomplete="cc-exp" onkeyup="mascara('##/##', this, event)" onblur="validarValidadeCartao(this)">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label class="form-label" for="cvvCartao">CVV <span class="text-danger">*</span></label>
+                                <input type="password" class="form-control bg-dark text-white border border-secondary" id="cvvCartao" placeholder="000" maxlength="3" inputmode="numeric" autocomplete="cc-csc" onkeyup="mascara('###', this, event)" onblur="validarCVV(this)">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="small text-white-50"><i class="fa-solid fa-rotate me-1"></i>A 1ª mensalidade é cobrada hoje e as próximas, todo mês, no mesmo cartão.</div>
+                    </div>
+
+                    <!-- Recepção -->
+                    <div class="mt-3 d-none" id="boxRecepcao">
+                        <div class="small text-white-50">
+                            <i class="fa-solid fa-circle-info me-1"></i>
+                            Sua matrícula fica registrada e é ativada quando a 1ª mensalidade for paga na recepção
+                            (Av. Alpha Performance, 1200 - Presidente Prudente). Leve um documento com foto.
+                        </div>
+                    </div>
+
+                    <!-- Política de cancelamento (Anexo I do ERS - Documento 04) -->
+                    <div class="mt-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="aceiteTermos">
+                            <label class="form-check-label small" for="aceiteTermos">
+                                Li e aceito a política de cancelamento: no plano mensal, o cancelamento suspende a cobrança do mês seguinte,
+                                sem devolução de valores já pagos; nos planos trimestral, semestral e anual, são retidos 30% do valor pago
+                                e devolvidos 70%.
+                            </label>
+                            <div class="invalid-feedback">Para concluir, é preciso aceitar a política de cancelamento.</div>
+                        </div>
+                    </div>
+
+                    <div class="aviso-demo mt-3"><i class="fa-solid fa-flask me-1"></i>Protótipo: nenhum valor é cobrado de verdade.</div>
+                </div>
+
+                <!-- Etapa 2: matrícula concluída -->
+                <div class="modal-body text-center d-none" id="etapaSucesso"></div>
+
+                <div class="modal-footer" id="rodapePagamento">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Voltar e editar</button>
+                    <button type="button" class="btn btn-btn-success" id="btnConfirmarPagamento">
+                        <i class="fa-solid fa-lock me-1"></i> Confirmar matrícula
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Necessário Para os Formulários -->
+    <script src="./assets/js/mask/mask.js"></script>
+    <script src="./assets/js/validation/validate.js"></script>
+    <script src="./assets/js/matricula.js"></script>
+
     <!-- Script necessário para o menu mobile -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/venobox.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
         document.querySelectorAll('.mobile-menu a[href^="#"]').forEach(function (link) {
@@ -350,5 +787,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.9.1/dist/js/adminlte.min.js"></script>
+
+    <!-- VLibras: tradução para Libras (governo federal - vlibras.gov.br); precisa de internet -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        if (window.VLibras) new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <!-- Widget de acessibilidade (contraste, tamanho do texto, leitura em voz alta...) -->
+    <script src="assets/js/acessibilidade.js" defer></script>
 </body>
 </html>
