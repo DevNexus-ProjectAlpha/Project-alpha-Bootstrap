@@ -322,7 +322,6 @@ p{
 	display: flex;
 	align-items: center;
 	border-top: 1px solid rgba(0, 0, 0, 0.1);
-	margin-top: 30px;
 	padding-top: 20px;
 }
 .mobile-menu .menu-content .button{
@@ -681,7 +680,6 @@ p{
 	margin-left: 10px;
 }
 .about-section .about-right .list-box .video{
-	background-image: url(../images/about-img-3.png);
 	background-repeat: no-repeat;
 	background-size: cover;
 	padding: 44.5px 114px;
@@ -793,7 +791,6 @@ p{
 ===================*/
 
 .marquee-section{
-	background-image: url(../images/marquee-bg.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	padding: 20px 0px;
@@ -990,7 +987,6 @@ p{
 ===================*/
 
 .choose-us-section{
-	background-image: url(../images/chosse-bg.png);
 	background-repeat: no-repeat;
 	background-size: cover;
 	padding: 120px 0px 337px;
@@ -1029,7 +1025,6 @@ p{
 .join-section .join-content{
 	display: flex;
 	justify-content: space-between;
-	background-image: url(../images/join-bg.png);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: left;
@@ -1259,7 +1254,6 @@ p{
 
 .team-section{
 	padding: 120px 0px;
-	background-image: url(../images/team-bg.png);
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -1378,7 +1372,6 @@ p{
 
 .testimonial-section{
 	padding: 120px 0px;
-	background-image: url(../images/testimonial-bg.png);
 	background-repeat: no-repeat;
 	background-size: cover;
 	text-align: center;
@@ -1759,7 +1752,6 @@ p{
 
 .footer-section{
 	padding-top: 120px;
-	background-image: url(../images/footer-bg.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	color: #D9D9D9;
@@ -1919,7 +1911,6 @@ Contact-Page
 ===============*/
 
 .breadcrumb-area{
-	background-image:	url(../images/breadcrumb-img.jpg);
 	background-repeat: no-repeat;
 	background-position: center bottom;
 	background-size: cover;

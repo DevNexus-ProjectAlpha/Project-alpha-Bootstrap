@@ -1,0 +1,4 @@
+Accessibility Widgets - https://github.com/sinanisler/accessibility-widget
+Autor: Sinan Isler - Licença GPL-3.0 (arquivo LICENSE nesta pasta)
+Versão copiada do repositório em 21/11/2026 (commit f0bc030).
+Carregado pelo arquivo assets/js/acessibilidade.js, que define as cores e o idioma.
