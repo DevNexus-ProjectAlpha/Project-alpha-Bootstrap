@@ -53,7 +53,7 @@ O mercado de academias em Presidente Prudente e região apresenta:
 
 A **DevNexus** (consultoria parceira) desenvolveu um conjunto de soluções:
 - 🌐 **Website Institucional** (este projeto)
-- 💻 **Sistema Desktop** — gestão interna da academia [Acesse aqui](https://drive.google.com/file/d/108oNzPdpNsUVgI4qkchlLTiRV7p_aZly/view?usp=drive_link)
+- 💻 **Sistema Desktop** — gestão interna da academia, em linguagem C com arquivos binários · [Repositório no GitHub](https://github.com/DevNexus-ProjectAlpha/Project-alpha-Sistema-Desktop)
 - 🎨 **Identidade Visual** — branding completo
 - ♿ **Diretrizes de Acessibilidade e Ergonomia**
 - 📋 **Business Model Canvas** — estratégia de negócio
@@ -277,7 +277,7 @@ Este projeto foi desenvolvido em parceria com a **DevNexus**, consultoria especi
 
 | Área | Responsáveis |
 |---|---|
-| **Sistema Desktop** | Toda a equipe |
+| **Sistema Desktop** | Toda a equipe ([partes de cada integrante](https://github.com/DevNexus-ProjectAlpha/Project-alpha-Sistema-Desktop#-contribuições)) |
 | **Website** | Gustavo Santos, William Minorelli, com feedback e revisão de toda a equipe |
 | **Modelo de planos e aulas adicionais** | Kauan Gois e Gustavo Santos |
 | **Documentação (ERS) e organização** | Gustavo Santos, com revisão da equipe |
