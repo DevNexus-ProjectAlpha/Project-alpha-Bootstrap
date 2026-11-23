@@ -678,8 +678,12 @@
           <h3 class="title"><span class="text-brand">Nossos Planos</span></h3>
           <h1 class="title">Escolha seu plano</h1>
         </div>
+        <!-- alterna os valores dos cards entre mensal e anual (anual com 15% de desconto) -->
         <div class="button">
-          <a href="cadastro.html" rel="noopener" class="btn">Matricule-se<i class="fa-solid fa-arrow-right"></i></a>
+          <div class="alternar-periodo" role="group" aria-label="Mostrar valores por mês ou por ano">
+            <button type="button" class="ativo" data-periodo="mensal" aria-pressed="true">Mensal</button>
+            <button type="button" data-periodo="anual" aria-pressed="false">Anual <span class="selo">-15%</span></button>
+          </div>
         </div>
       </div>
       <!-- Pacotes e valores conforme o Anexo I do ERS (Documentos 01 e 03):
@@ -689,8 +693,9 @@
           <div class="package-box">
             <div class="box-head">
               <h5 class="price-title">Start</h5>
-              <span class="price">R$ 129,90</span>
+              <span class="price" data-mensal="12990">R$ 129,90</span>
               <span class="validity">/por mês</span>
+              <span class="equivalente"></span>
             </div>
             <div class="box-body">
               <ul>
@@ -699,7 +704,7 @@
                 <li><i class="fa-regular fa-circle-check"></i>Acompanhamento do instrutor</li>
                 <li><i class="fa-regular fa-circle-xmark"></i>Treino personalizado</li>
                 <li><i class="fa-regular fa-circle-xmark"></i>Desconto na loja</li>
-                <li><i class="fa-regular fa-square-plus"></i>Alpha Pass: + R$ 39,90/mês</li>
+                <li><i class="fa-regular fa-square-plus"></i>Alpha Pass: <span class="valor-alpha-pass">+ R$ 39,90/mês</span></li>
                 <li><i class="fa-regular fa-circle-xmark"></i>Nutricionista e fisioterapeuta</li>
               </ul>
             </div>
@@ -712,8 +717,9 @@
           <div class="package-box">
             <div class="box-head">
               <h5 class="price-title">Fit</h5>
-              <span class="price">R$ 159,80</span>
+              <span class="price" data-mensal="15980">R$ 159,80</span>
               <span class="validity">/por mês</span>
+              <span class="equivalente"></span>
             </div>
             <div class="box-body">
               <ul>
@@ -722,7 +728,7 @@
                 <li><i class="fa-regular fa-circle-check"></i>Acompanhamento do instrutor</li>
                 <li><i class="fa-regular fa-circle-check"></i>Treino personalizado</li>
                 <li><i class="fa-regular fa-circle-xmark"></i>Desconto na loja</li>
-                <li><i class="fa-regular fa-square-plus"></i>Alpha Pass: + R$ 39,90/mês</li>
+                <li><i class="fa-regular fa-square-plus"></i>Alpha Pass: <span class="valor-alpha-pass">+ R$ 39,90/mês</span></li>
                 <li><i class="fa-regular fa-circle-xmark"></i>Nutricionista e fisioterapeuta</li>
               </ul>
             </div>
@@ -736,8 +742,9 @@
             <span class="popular-tag">Mais popular</span>
             <div class="box-head">
               <h5 class="price-title">Performance</h5>
-              <span class="price">R$ 189,80</span>
+              <span class="price" data-mensal="18980">R$ 189,80</span>
               <span class="validity">/por mês</span>
+              <span class="equivalente"></span>
             </div>
             <div class="box-body">
               <ul>
@@ -759,8 +766,9 @@
           <div class="package-box">
             <div class="box-head">
               <h5 class="price-title">Full</h5>
-              <span class="price">R$ 219,80</span>
+              <span class="price" data-mensal="21980">R$ 219,80</span>
               <span class="validity">/por mês</span>
+              <span class="equivalente"></span>
             </div>
             <div class="box-body">
               <ul>
@@ -1134,6 +1142,7 @@
   <script src="assets/js/owl.carousel.min.js"></script>
   <script src="assets/js/venobox.min.js"></script>
   <script src="assets/js/script.js"></script>
+  <script src="assets/js/planos.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Navegação por âncora: fecha o menu mobile ao clicar em uma seção -->

@@ -75,7 +75,7 @@ Projeto desenvolvido na disciplina **Projeto Integrador de Disciplinas II**, do 
 ### 🌐 Página Inicial
 - Hero section, apresentação da academia, história, ergonomia e acessibilidade
 - Modalidades e equipe de profissionais
-- **Planos Start, Fit, Performance e Full** com benefícios, **aulas adicionais** com desconto por quantidade e **Alpha Pass**
+- **Planos Start, Fit, Performance e Full** com benefícios, botão **Mensal / Anual** (mostra o valor anual com 15% de desconto), **aulas adicionais** com desconto por quantidade e **Alpha Pass**
 - **Galeria de fotos** com "ver mais" e ampliação em modal
 - Botão "Escolher plano" que leva ao cadastro com o pacote já selecionado
 
@@ -111,6 +111,7 @@ Projeto desenvolvido na disciplina **Projeto Integrador de Disciplinas II**, do 
 | **CSS3** | Estilos e responsividade |
 | **JavaScript** | Interatividade, validações e regras de negócio |
 | **Bootstrap 5.3** | Layout, componentes e validação de formulários |
+| **Template FitCore** | Base visual do site ([TemplateMonster](https://www.templatemonster.com/pt-br/templates-de-site/504542.html)) |
 | **AdminLTE 4** | Tema das páginas de cadastro e login |
 | **jQuery 3.7, Owl Carousel e VenoBox** | Interações da página inicial |
 | **Font Awesome 6** | Ícones |
@@ -139,6 +140,7 @@ Project-alpha-Bootstrap/
         └── 📁 js/
             ├── script.js             # Interações da página inicial
             ├── dashboard.js          # Lógica do dashboard
+            ├── planos.js             # Botão Mensal / Anual dos planos
             ├── matricula.js          # Planos, valores e pagamento
             ├── acessibilidade.js     # Carrega o widget de acessibilidade
             ├── 📁 accessibility-widget/  # Widget de acessibilidade (GPL-3.0)
@@ -226,7 +228,7 @@ Acesse `http://localhost:8000` (ou o endereço indicado).
 #### 🚀 Adicionado
 - **Dashboard de avaliações físicas** funcional: tabela dinâmica, contadores, histórico, cálculo de IMC, reagendamento e relatório para impressão
 - **Plano e matrícula no cadastro:** pacotes, aulas adicionais, Alpha Pass, períodos com desconto e pagamento simulado
-- **Planos e aulas adicionais** na página inicial
+- **Planos e aulas adicionais** na página inicial, com botão Mensal / Anual
 - **Widget de acessibilidade** e **VLibras** em todas as páginas
 - **Galeria de fotos** e **página do aluno**
 
@@ -288,6 +290,12 @@ Acadêmicos de **Análise e Desenvolvimento de Sistemas (ADS)** da **Unoeste**.
 ## 📞 Contato e Suporte
 
 Para dúvidas ou sugestões sobre o projeto, entre em contato pelo repositório no GitHub.
+
+## 🙏 Créditos
+
+- **Template base:** [FitCore – Fitness & Gym HTML5 Template](https://www.templatemonster.com/pt-br/templates-de-site/504542.html), da TemplateMonster, gratuito para fins educacionais. O layout foi adaptado à identidade visual da Project Alpha, e as páginas de matrícula, área do aluno e dashboard foram criadas pela equipe.
+- **Widget de acessibilidade:** [sinanisler/accessibility-widget](https://github.com/sinanisler/accessibility-widget) (GPL-3.0).
+- **VLibras:** Governo Federal.
 
 ## 📄 Licença
 

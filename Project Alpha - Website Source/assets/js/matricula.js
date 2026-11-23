@@ -481,6 +481,14 @@ function iniciarMatricula() {
         trocarPacote();
     }
 
+    // com o botão "Anual" ativo nos planos: cadastro.html?pacote=fit&periodo=anual
+    let periodo = new URLSearchParams(window.location.search).get('periodo');
+    let radioPeriodo = document.querySelector(`#periodo-${periodo}`);
+    if (periodo && radioPeriodo) {
+        radioPeriodo.checked = true;
+        trocarPeriodo();
+    }
+
     atualizarResumo();
 }
 

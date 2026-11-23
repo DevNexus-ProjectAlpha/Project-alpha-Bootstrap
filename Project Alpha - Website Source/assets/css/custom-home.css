@@ -2009,3 +2009,41 @@ body,
 .aulas-adicionais .aula-preco small { color: var(--alpha-text-soft); font-weight: 400; }
 .aulas-adicionais .row > [class*="col-"] { margin-bottom: 0; }
 .aulas-adicionais .aulas-desconto { margin: 22px 0 0; text-align: center; color: var(--alpha-text-soft); }
+
+/* Botão Mensal / Anual dos planos (no lugar do "Matricule-se", que já está na barra de navegação) */
+.alternar-periodo {
+  display: inline-flex;
+  padding: 5px;
+  border: 1px solid var(--alpha-line-strong);
+  border-radius: var(--alpha-radius-pill);
+  background-color: var(--alpha-panel-2);
+}
+.alternar-periodo button {
+  border: 0;
+  border-radius: var(--alpha-radius-pill);
+  padding: 10px 24px;
+  background: transparent;
+  color: var(--alpha-text-soft);
+  font-family: var(--alpha-font-body);
+  font-weight: 700;
+  transition: background-color 0.2s, color 0.2s;
+}
+.alternar-periodo button:hover { color: var(--alpha-white); }
+.alternar-periodo button.ativo { background-color: var(--alpha-red); color: var(--alpha-white); }
+.alternar-periodo button:focus-visible { outline: 2px solid var(--alpha-white); outline-offset: 2px; }
+.alternar-periodo .selo {
+  margin-left: 4px;
+  padding: 2px 8px;
+  border-radius: var(--alpha-radius-pill);
+  background-color: var(--alpha-green);
+  color: var(--alpha-white);
+  font-size: 0.75rem;
+}
+#planos .package-box .equivalente {
+  display: block;
+  min-height: 1.4em;
+  margin-top: 6px;
+  color: var(--alpha-text-soft);
+  font-size: 0.85rem;
+}
+#planos .package-box .equivalente strong { color: var(--alpha-green); font-weight: 600; }
