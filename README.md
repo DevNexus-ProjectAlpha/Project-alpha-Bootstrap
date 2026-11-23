@@ -85,8 +85,8 @@ Projeto desenvolvido na disciplina **Projeto Integrador de Disciplinas II**, do 
 - Escolha de pacote, aulas adicionais, Alpha Pass e período (mensal, trimestral, semestral ou anual), com resumo do valor total
 - **Pagamento simulado** por Pix, cartão de crédito (com validação do número) ou na recepção, e tela de matrícula concluída
 
-### 👤 Área do Aluno
-- Login e perfil com os dados de cadastro e da matrícula
+### 👤 Entrar e Dados do Aluno
+- Login do aluno e página com os dados de cadastro e da matrícula
 
 ### 📊 Dashboard de Avaliações Físicas
 - Tabela dinâmica com adicionar, excluir, excluir selecionados, busca, ordenação e paginação
@@ -131,7 +131,7 @@ Project-alpha-Bootstrap/
     ├── index.html                    # Página inicial
     ├── cadastro.html                 # Cadastro e matrícula
     ├── login.html                    # Login do aluno
-    ├── aluno.html                    # Perfil do aluno
+    ├── aluno.html                    # Dados do aluno
     ├── dashboard.html                # Dashboard de avaliações físicas
     │
     └── 📁 assets/
@@ -187,7 +187,7 @@ Acesse `http://localhost:8000` (ou o endereço indicado).
 | Início | `index.html` | Apresentação da academia, planos, aulas, galeria e equipe |
 | Cadastro | `cadastro.html` | Cadastro, escolha do plano e pagamento da matrícula |
 | Entrar | `login.html` | Login do aluno |
-| Área do aluno | `aluno.html` | Perfil com dados de cadastro e matrícula |
+| Dados do aluno | `aluno.html` | Dados de cadastro e da matrícula do aluno |
 | Dashboard | `dashboard.html` | Agendamento e acompanhamento das avaliações físicas |
 
 ## 🎯 Objetivos do Projeto
@@ -280,7 +280,8 @@ Este projeto foi desenvolvido em parceria com a **DevNexus**, consultoria especi
 | Área | Responsáveis |
 |---|---|
 | **Sistema Desktop** | Toda a equipe ([partes de cada integrante](https://github.com/DevNexus-ProjectAlpha/Project-alpha-Sistema-Desktop#-contribuições)) |
-| **Website** | Gustavo Santos, William Minorelli, com feedback e revisão de toda a equipe |
+| **Website: Gustavo Santos** | Adaptação do template FitCore à marca Project Alpha; página inicial; planos com botão Mensal / Anual, aulas adicionais e Alpha Pass; escolha de plano, aulas e pagamento no cadastro, com atualizações nos formulários de Entrar e Cadastro; dashboard de avaliações físicas; acessibilidade (widget e VLibras); deploy na Vercel |
+| **Website: William Minorelli** | Versão inicial dos formulários de Entrar e Cadastro, com máscaras e validação; página de Dados do aluno; cards dos professores com informações adicionais; galeria de fotos; remoção das imagens e páginas não usadas do template |
 | **Modelo de planos e aulas adicionais** | Kauan Gois e Gustavo Santos |
 | **Documentação (ERS) e organização** | Gustavo Santos, com revisão da equipe |
 | **Gestão, alinhamento e integração da versão final** | Gustavo Santos |
